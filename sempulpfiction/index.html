@@ -99,25 +99,24 @@
         <li class="next">2014 - Freebase -> Wikidata</li>
     </ol>
 </section>
-
-<section class="slide" id="Need For Semantic Web 1">
+<section class="slide" id="Need For Semantic Web 0">
     <h5>The Need for Semantics in the Web</h5>
+    </section>
+<section class="slide" id="Need For Semantic Web 1">
     <img src="pictures/web.jpeg">
-    <blockquote style="color: #000" align="center">This is the classic picture of hypertext which used to be a part of
+    <blockquote style="color: #000" align="center"><small>This is the classic picture of hypertext which used to be a part of
         talks in the days when we had to explain what hypertext is. The web is a set of nodes and links.
-    </blockquote>
+    </small></blockquote>
     <em>[Tim Berners-Lee 1994, http://www.w3.org/Talks/WWW94Tim/]</em>
 </section>
 
 <section class="slide" id="Need For Semantic Web 2">
-    <h5>The Need for Semantics in the Web</h5>
     <img src="pictures/weblevel.jpeg">
     <blockquote align="center"> To a computer, then, the web is a flat, boring world devoid of meaning.</blockquote>
     <em>[Tim Berners-Lee 1994, http://www.w3.org/Talks/WWW94Tim/]</em>
 </section>
 
 <section class="slide" id="Need For Semantic Web 3">
-    <h5>The Need for Semantics in the Web</h5>
     <img src="pictures/weblevel.jpeg">
     <blockquote style="color: #000" align="center">This is a pity, as in fact documents on the web describe real objects
         and imaginary concepts, and give particular relationships between them.
@@ -126,7 +125,6 @@
 </section>
 
 <section class="slide" id="Need For Semantic Web 4">
-    <h5>The Need for Semantics in the Web</h5>
     <img src="pictures/authlevel.jpeg">
     <blockquote style="color: #000" align="center">Adding semantics to the web involves two things: allowing documents
         which have information in machine-readable forms, and allowing links to be created with relationship values.
@@ -144,6 +142,16 @@
     <em>[Tim Berners-Lee 1994, http://www.w3.org/Talks/WWW94Tim/]</em>
 </section>
 
+<section class="slide" id="rdf-logo">
+    <img src="pictures/rdflogo.png" alt="" class="cover">
+    <style>
+        #picture h2 {
+            color: #FFF;
+        }
+    </style>
+</section>
+
+
 <section class="slide" id="rdf-example">
     <img src="pictures/rdf-simple.png" alt="" class="cover">
     <style>
@@ -152,7 +160,6 @@
         }
     </style>
 </section>
-
 
 <section class="slide">
     <h2>RDF serialization formats</h2>
@@ -168,17 +175,21 @@
 </section>
 
 <section class="slide">
+    <h2>Query Linked Data</h2>
+</section>
+
+<section class="slide">
     <h2>SPARQL Example</h2>
 		<pre>
 			<code>
-                PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
-                PREFIX card: &lt;http://www.w3.org/People/Berners-Lee/card#&gt;
-                SELECT ?homepage
-                FROM &lt;http://www.w3.org/People/Berners-Lee/card&gt;
-                WHERE {
-                card:i foaf:knows ?known .
-                ?known foaf:homepage ?homepage .
-                }
+PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
+PREFIX card: &lt;http://www.w3.org/People/Berners-Lee/card#&gt;
+SELECT ?homepage
+FROM &lt;http://www.w3.org/People/Berners-Lee/card&gt;
+WHERE {
+card:i foaf:knows ?known .
+?known foaf:homepage ?homepage .
+}
 
             </code>
         </pre>
@@ -188,13 +199,13 @@
     <h2>SPARQL Example Wikidata</h2>
 		<pre>
 			<code>
-                SELECT DISTINCT ?airport ?coor ?range
-                WHERE
-                {
-                ?airport wdt:P31 wd:Q1248784 ;
-                ?range wd:Q31;
-                wdt:P625 ?coor.
-                }
+SELECT DISTINCT ?airport ?coor ?range
+WHERE
+{
+?airport wdt:P31 wd:Q1248784 ;
+?range wd:Q31;
+wdt:P625 ?coor.
+}
             </code>
         </pre>
 </section>
@@ -212,33 +223,40 @@
 </section>
 
 <section class="slide" id="microdata">
-    <h2>Microdata</h2>
+    <h5>Microdata</h5>
 		<pre>
 			<code>
-&ltp itemscope itemprop="Person" itemtype="http://schema.org/Person"&gt
-&ltspan itemprop="name"&gtChristopher Froome&lt/span&gt was sponsored by
-&ltspan itemprop="sponsor" itemtype="http://schema.org/Organization"&gt
-&lta itemprop="url" href="http://www.skysports.com/"&gtSky&lt/a&gt&lt/span&gt in the Tour de France.
+&ltp itemscope itemprop="Person"
+itemtype="http://schema.org/Person"&gt
+&ltspan
+itemprop="name"&gtChristopher Froome&lt/span&gt was sponsored by
+&ltspan itemprop="sponsor"
+itemtype="http://schema.org/Organization"&gt
+&lta itemprop="url"
+href="http://www.skysports.com/"&gtSky&lt/a&gt&lt/span&gt
+in the Tour de France.
 &lt/p&gt
             </code>
         </pre>
 </section>
 
 <section class="slide">
-    <h2>RDFa</h2>
+    <h5>RDFa</h5>
 		<pre>
 			<code>
 &ltp vocab="http://schema.org/" typeof="Person"&gt
-&ltspan property="name"&gtChristopher Froome&lt/span&gt was sponsored by
-&ltspan property="sponsor" typeof="http://schema.org/Organization"&gt
-&lta property="url" href="http://www.skysports.com/"&gtSky&lt/a&gt&lt/span&gt in the Tour de France.
-&lt/p&gt
+&ltspan property="name"&gtChristopher Froome&lt/span&gt
+was sponsored by &ltspan property="sponsor"
+typeof="http://schema.org/Organization"&gt
+&lta property="url"
+href="http://www.skysports.com/"&gtSky&lt/a&gt&lt/span&gt
+in the Tour de France. &lt/p&gt
             </code>
         </pre>
 </section>
 
 <section class="slide">
-    <h2>JSON-LD</h2>
+    <h5>JSON-LD</h5>
 		<pre>
 			<code>
 "@context": "http://schema.org/",
@@ -256,25 +274,25 @@
 
 
 <section class="slide black" id="Smarter Search">
-    <h2 style="color: #FFF">Smarter Search</h2>
+    <h2 class="cover" style="color: #FFF">Smarter Search</h2>
 </section>
 
 <section class="slide black" id="Why LD">
-    <h2 style="color: #FFF">Why Linking Data?</h2>
+    <h2 class="cover" style="color: #FFF">Why Linking Data?</h2>
 </section>
 
 <section class="slide black" id="Why Open Data">
-    <h2 style="color: #FFF">Why Open Data?</h2>
+    <h2 class="cover" style="color: #FFF">Why Open Data?</h2>
 </section>
 
 
 <section class="slide black" id="Challenges">
-    <h2 style="color: #FFF">Challenges</h2>
+    <h2 class="cover" style="color: #FFF">Challenges</h2>
 </section>
 
 
 <section class="slide black" id="rest">
-    <h2 style="color: #FFF">Let's talk about REST</h2>
+    <h2 class="cover" style="color: #FFF">Let's talk about REST</h2>
 </section>
 
 <section class="slide" id="is this rest">
@@ -282,7 +300,7 @@
     <li class="next">GET /delete_user.x?id=123</li>
     <li class="next">GET /user/delete</li>
     <li class="next">GET /new_user.x</li>
-    <li class="next">GET /user/new</li>.
+    <li class="next">GET /user/new</li>
     <li class="next">GET /user?id=1</li>
     <li class="next">GET /user/id/1</li>
 </section>
@@ -292,6 +310,10 @@
     <li class="next">GET /user/2</li>
     <li class="next">DELETE /user/2</li>
     <li class="next">PUT /user</li>
+</section>
+
+<section class="slide black" id="no restful URIs">
+    <h2 class="cover" style="color: #FFF">There is NO restful URIs :)</h2>
 </section>
 
 <section class="slide" id="RPC">
@@ -306,15 +328,15 @@
     <h2>XML-RPC</h2>
 		<pre>
             <code>
-                &lt?xml version="1.0"?&gt
-                &ltmethodCall&gt
-                    &ltmethodName&gtexamples.getStateName&lt/methodName&gt
-                    &ltparams&gt
-                        &ltparam&gt
-                        &ltvalue&gt&lti4&gt40&lt/i4&gt&lt/value&gt
-                        &lt/param&gt
-                    &lt/params&gt
-                &lt/methodCall&gt
+&lt?xml version="1.0"?&gt
+&ltmethodCall&gt
+    &ltmethodName&gtexamples.getStateName&lt/methodName&gt
+    &ltparams&gt
+        &ltparam&gt
+        &ltvalue&gt&lti4&gt40&lt/i4&gt&lt/value&gt
+        &lt/param&gt
+    &lt/params&gt
+&lt/methodCall&gt
             </code>
 </pre>
 </section>
@@ -331,14 +353,14 @@
 
 
 <section class="slide black" id="rest?">
-    <h2 style="color: #FFF">What Really is REST?</h2>
+    <h2 class="caption" style="color: #FFF">What Really is REST?</h2>
     <h2 style="color: #FFF" class="next">Hypermedia Driven</h2>
-    <a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">
+    <p><a class="next" href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">
         The dissertation of Roy Fielding
-    </a>
-    <a href="http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven">
+    </a></p>
+    <p><a class="next" href="http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven">
         Nice discussion
-    </a>
+    </a></p>
 </section>
 
 <section class="slide" id="Rest Formats">
@@ -349,6 +371,15 @@
     <li class="next">HAL</li>
     <li class="next">JSON Hyper-Schema</li>
     <li class="next">json-home</li>
+</section>
+
+
+<section class="slide" id="hydra">
+    <h2 class="caption">HYDRA</h2>
+    <p class="next">JSON-LD +</p>
+    <p class="next">HYDRA Vocab + </p>
+    <p class="next">hypermedia controls =</p>
+    <p class="next">RESTful API</p>
 </section>
 
 <section class="slide" id="hydra1">
