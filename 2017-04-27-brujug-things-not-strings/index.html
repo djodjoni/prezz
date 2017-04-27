@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Web, Semantics, LOD & REST</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="shower/themes/mk1/styles/screen-16x10.css">
+</head>
+<body class="shower list">
+<header class="caption">
+    <h1>Things not Strings</h1>
+
+    <p>Kalin Maldzhanski</p>
+</header>
+<section class="slide black" id="cover">
+    <h2 class="shout grow" style="color: #FFF">Things not Strings</h2>
+</section>
+<section class="slide black" id="lets-build-an-app">
+    <h2 class="shout srink" style="color: #FFF">Let's build an app!</h2>
+</section>
+
+<section class="slide" id="specs">
+    <h2>Simple Food App Specs</h2>
+    <li class="next">Fetch proposed diet</li>
+    <li class="next">Recipe Query based on the diet data</li>
+    <li class="next">Fetch recipe and related ingredients</li>
+    <li class="next">Query food providers for offerings</li>
+    <li class="next">Looks up products origin and nutrition data and user feedback</li>
+    <li class="next">Selects products and chooses delivery option</li>
+    <li class="next">Receives real time data of her delivery</li>
+    <li class="next">Enjoy the meal and leave feedback for the recipe and used products</li>
+</section>
+
+
+<section class="slide" id="arch-1">
+    <h2>Architecture</h2>
+    <table>
+        <tr>
+            <th width="43%" scope="row">Application</th>
+        </tr>
+        <tr>
+
+            <td>
+                <svg width="500" height="400">
+                    <rect width="500" height="300" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                </svg>
+            </td>
+        </tr>
+    </table>
+</section>
+
+<section class="slide" id="arch0">
+    <h2>Architecture</h2>
+    <table>
+        <tr>
+            <th width="43%" scope="row">Client</th>
+            <th width="33%" scope="row">Service</th>
+            <th width="33%" scope="row">Repo</th>
+        </tr>
+        <tr>
+
+            <td>
+                <svg width="100" height="400">
+                    <rect width="100" height="300" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                </svg>
+            </td>
+            <td>
+                <svg width="100" height="400">
+                    <rect width="100" height="300" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                </svg>
+            </td>
+            <td>
+                <svg width="100" height="400">
+                    <rect width="100" height="300" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                </svg>
+            </td>
+        </tr>
+    </table>
+</section>
+
+
+<section class="slide" id="arch1">
+    <h2>Architecture</h2>
+    <table>
+        <tr>
+            <th width="43%" scope="row">Client</th>
+            <th width="33%" scope="row">Service</th>
+            <th width="33%" scope="row">Repo</th>
+        </tr>
+        <tr>
+
+            <td>
+                <svg width="100" height="400">
+                    <rect width="100" height="300" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                </svg>
+            </td>
+            <td>
+                <svg width="100" height="400">
+                    <rect width="100" height="300" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                </svg>
+            </td>
+            <td>
+                <svg width="100" height="400">
+                    <rect width="100" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="60" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="120" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="180" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="240" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                </svg>
+            </td>
+        </tr>
+    </table>
+</section>
+
+<section class="slide" id="arch2">
+    <h2>Architecture</h2>
+    <table>
+        <tr>
+            <th width="43%" scope="row">Client</th>
+            <th width="33%" scope="row">Service</th>
+            <th width="33%" scope="row">Repo</th>
+        </tr>
+        <tr>
+
+            <td>
+                <svg width="100" height="400">
+                    <rect width="100" height="300" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                </svg>
+            </td>
+            <td>
+                <svg width="100" height="400">
+                    <rect width="100" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="60" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="120" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="180" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="240" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                </svg>
+            </td>
+            <td>
+                <svg width="100" height="400">
+                    <rect width="100" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="60" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="120" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="180" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="240" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                </svg>
+            </td>
+        </tr>
+    </table>
+</section>
+
+
+<section class="slide" id="arch3">
+    <h2>Architecture</h2>
+    <table>
+        <tr>
+            <th width="43%" scope="row">Client</th>
+            <th width="33%" scope="row">Service</th>
+            <th width="33%" scope="row">Repo</th>
+        </tr>
+        <tr>
+
+            <td>
+                <svg width="100" height="400">
+                    <rect width="100" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="60" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="120" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="180" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="240" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                </svg>
+            </td>
+            <td>
+                <svg width="100" height="400">
+                    <rect width="100" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="60" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="120" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="180" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="240" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                </svg>
+            </td>
+            <td>
+                <svg width="100" height="400">
+                    <rect width="100" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="60" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="120" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="180" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                    <rect width="100" y="240" height="52" style="fill:#fff;stroke-width:3;stroke:rgb(0,0,0)" />
+                </svg>
+            </td>
+        </tr>
+    </table>
+</section>
+
+<section class="slide">
+    <h2 class="shout">
+        How do we manage contracts?!
+    </h2>
+</section>
+
+<section class="slide">
+    <h2 class="shout">
+        A step back.
+    </h2>
+</section>
+
+<section class="slide">
+    <h2>Historical Fragments</h2>
+    <ol>
+        <li>1934 - Paul Otlet imagined “Radiated Library”</li>
+        <li class="next">1936 - John Vincent Atanasoff invented the digital computer</li>
+        <li class="next">1969 - ARPANET</li>
+        <li class="next">1974 - TCP first spec</li>
+        <li class="next">1982 - TCP/IP standardized</li>
+        <li class="next">1984 and 1988 - CERN Installs TCP/IP</li>
+        <li class="next">1989 - memo about WWW by Sir Tim Berners-Lee</li>
+    </ol>
+</section>
+
+<section class="slide">
+    <h2>Historical Fragments</h2>
+    <ol>
+        <li>1945 - Vannevar Bush talks about Memex - interlinked content</li>
+        <li class="next">1963 - Ted Nelson mentions the terms 'hypertext' and 'hypermedia'</li>
+        <li class="next">1980 - Tim Berners-Lee creates ENQUIRE</li>
+        <li class="next">1992 - Lynx is created</li>
+
+    </ol>
+</section>
+
+<section class="slide">
+    <h2>Historical Fragments</h2>
+    <ol>
+        <li>1990 - Sir Tim Berners-Lee creates first WWW browser/server</li>
+        <li class="next">1993 - HTML was released</li>
+        <li class="next">1994 - @Geneva - Timbl: Semantics On the Web</li>
+        <li class="next">1997 - RDF started</li>
+        <li class="next">2004 - OWL started</li>
+        <li class="next">2006 - LOD starts</li>
+        <li class="next">2009 - Tim Berners-Lee refreshed the idea</li>
+
+    </ol>
+</section>
+
+<section class="slide">
+    <h2>Historical Fragments</h2>
+    <ol>
+        <li>2007 - DBPedia Starts</li>
+        <li class="next">2007 - Freebase Starts</li>
+        <li class="next">2009 - Wolfram Alpha Launches</li>
+        <li class="next">2010 - Google buys Freebase</li>
+        <li class="next">2012 - WikiData launches</li>
+        <li class="next">2012 - Google Knowledge Graph</li>
+        <li class="next">2014 - Freebase -> Wikidata</li>
+    </ol>
+</section>
+<section class="slide black" id="Need For Semantic Web 0">
+    <h2 class="cover" style="color: #FFF">The Need for Semantics in the Web</h2>
+    </section>
+<section class="slide" id="Need For Semantic Web 1">
+    <img src="pictures/web.jpeg">
+    <blockquote style="color: #000" align="center"><small>This is the classic picture of hypertext which used to be a part of
+        talks in the days when we had to explain what hypertext is. The web is a set of nodes and links.
+    </small></blockquote>
+    <em>[Tim Berners-Lee 1994, http://www.w3.org/Talks/WWW94Tim/]</em>
+</section>
+
+<section class="slide" id="Need For Semantic Web 2">
+    <img src="pictures/weblevel.jpeg">
+    <blockquote align="center"> To a computer, then, the web is a flat, boring world devoid of meaning.</blockquote>
+    <em>[Tim Berners-Lee 1994, http://www.w3.org/Talks/WWW94Tim/]</em>
+</section>
+
+<section class="slide" id="Need For Semantic Web 3">
+    <img src="pictures/weblevel.jpeg">
+    <blockquote style="color: #000" align="center">This is a pity, as in fact documents on the web describe real objects
+        and imaginary concepts, and give particular relationships between them.
+    </blockquote>
+    <em>[Tim Berners-Lee 1994, http://www.w3.org/Talks/WWW94Tim/]</em>
+</section>
+
+<section class="slide" id="Need For Semantic Web 4">
+    <img src="pictures/authlevel.jpeg">
+    <blockquote style="color: #000" align="center">Adding semantics to the web involves two things: allowing documents
+        which have information in machine-readable forms, and allowing links to be created with relationship values.
+    </blockquote>
+    <em>[Tim Berners-Lee 1994, http://www.w3.org/Talks/WWW94Tim/]</em>
+</section>
+
+<section class="slide" id="Need For Semantic Web 5">
+    <h5>The Need for Semantics in the Web</h5>
+    <img src="pictures/semantic.jpg">
+    <blockquote style="color: #000" align="center">This means that machines, as well as operating on the web
+        information, can do real things. For example, a program could search for a house and negotiate transfer of
+        ownership of the house to a new owner.
+    </blockquote>
+    <em>[Tim Berners-Lee 1994, http://www.w3.org/Talks/WWW94Tim/]</em>
+</section>
+
+<section class="slide" id="rdf-logo">
+    <img src="pictures/rdflogo.png" alt="" class="cover">
+    <style>
+        #picture h2 {
+            color: #FFF;
+        }
+    </style>
+</section>
+
+
+<section class="slide" id="rdf-example">
+    <img src="pictures/rdf-simple.png" alt="" class="cover">
+    <style>
+        #picture h2 {
+            color: #FFF;
+        }
+    </style>
+</section>
+
+<section class="slide">
+    <h2>RDF serialization formats</h2>
+    <ol>
+        <li>Turtle - compact, human-friendly format.
+        <li class="next">N-Triples - very simple, easy-to-parse, line-based format that is not as compact as Turtle.
+        <li class="next">N-Quads - superset of N-Triples, for serializing multiple RDF graphs.
+        <li class="next">JSON-LD - JSON-based serialization.
+        <li class="next">N3 or Notation3 - a non-standard serialization that is very similar to Turtle, but has some
+            additional features.
+        <li class="next">RDF/XML - an XML-based syntax that was the first standard format for serializing RDF.
+    </ol>
+</section>
+
+<section class="slide">
+    <h2>Query Linked Data</h2>
+</section>
+
+<section class="slide">
+    <h2>SPARQL Example</h2>
+		<pre>
+			<code>
+PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
+PREFIX card: &lt;http://www.w3.org/People/Berners-Lee/card#&gt;
+SELECT ?homepage
+FROM &lt;http://www.w3.org/People/Berners-Lee/card&gt;
+WHERE {
+card:i foaf:knows ?known .
+?known foaf:homepage ?homepage .
+}
+
+            </code>
+        </pre>
+</section>
+
+<section class="slide">
+    <h2>SPARQL Example Wikidata</h2>
+		<pre>
+			<code>
+SELECT DISTINCT ?airport ?coor ?range
+WHERE
+{
+?airport wdt:P31 wd:Q1248784 ;
+?range wd:Q31;
+wdt:P625 ?coor.
+}
+            </code>
+        </pre>
+</section>
+
+<section class="slide black" id="Structured data for the web">
+    <h2 style="color: #FFF">Structured data for html</h2>
+
+    <h2 class="next" style="color: #FFF"><a href="http://schema.org"> Schema.org</a></h2>
+
+    <h2 class="next" style="color: #FFF">RDFa</h2>
+
+    <h2 class="next" style="color: #FFF">Microdata</h2>
+
+    <h2 class="next" style="color: #FFF">JSON-LD</h2>
+</section>
+
+<section class="slide" id="microdata">
+    <h5>Microdata</h5>
+		<pre>
+			<code>
+&ltp itemscope itemprop="Person"
+itemtype="http://schema.org/Person"&gt
+&ltspan
+itemprop="name"&gtChristopher Froome&lt/span&gt was sponsored by
+&ltspan itemprop="sponsor"
+itemtype="http://schema.org/Organization"&gt
+&lta itemprop="url"
+href="http://www.skysports.com/"&gtSky&lt/a&gt&lt/span&gt
+in the Tour de France.
+&lt/p&gt
+            </code>
+        </pre>
+</section>
+
+<section class="slide">
+    <h5>RDFa</h5>
+		<pre>
+			<code>
+&ltp vocab="http://schema.org/" typeof="Person"&gt
+&ltspan property="name"&gtChristopher Froome&lt/span&gt
+was sponsored by &ltspan property="sponsor"
+typeof="http://schema.org/Organization"&gt
+&lta property="url"
+href="http://www.skysports.com/"&gtSky&lt/a&gt&lt/span&gt
+in the Tour de France. &lt/p&gt
+            </code>
+        </pre>
+</section>
+
+<section class="slide">
+    <h5>JSON-LD</h5>
+		<pre>
+			<code>
+"@context": "http://schema.org/",
+"@type": "Person",
+"name": "Christopher Froome",
+"sponsor":
+{
+"@type": "Organization",
+"name": "Sky",
+"url": "http://www.skysports.com/"
+}
+            </code>
+        </pre>
+</section>
+
+
+<section class="slide black" id="Smarter Search">
+    <h2 style="color: #FFF">Smarter Search</h2>
+    <li class="next" style="color: #FFF">define what you want the way you want it</li>
+    <li class="next" style="color: #FFF">link your content with other content</li>
+    <li class="next" style="color: #FFF">better SEO</li>
+    <li class="next" style="color: #FFF">receive relevant results</li>
+</section>
+
+<section class="slide black" id="Why LOD">
+    <h2 style="color: #FFF">Why Linking Open Data?</h2>
+    <li class="next" style="color: #FFF">breaks down the information silos</li>
+    <li class="next" style="color: #FFF">collaboratively extending and improving data</li>
+    <li class="next" style="color: #FFF">enhances creativity and innovation</li>
+    <li class="next" style="color: #FFF">improved data & content analyses</li>
+    <li class="next" style="color: #FFF">new options for machine learning and AI</li>
+    <li class="next" style="color: #FFF">Smarter Truly-Personal Assistants</li>
+</section>
+
+
+<section class="slide black" id="Challenges">
+    <h2 style="color: #FFF">Challenges</h2>
+    <li class="next" style="color: #FFF">discoverability of data</li>
+    <li class="next" style="color: #FFF">discoverability of ontologies</li>
+    <li class="next" style="color: #FFF">interpreting ontologies</li>
+    <li class="next" style="color: #FFF">mapping ontologies</li>
+    <li class="next" style="color: #FFF">inconsistency between datasets</li>
+</section>
+
+
+<section class="slide black" id="Resources">
+    <h2 style="color: #FFF">Resources</h2>
+    <li class="next" style="color: #FFF"><a href="https://datahub.io/">LOD Data</a> </li>
+    <li class="next" style="color: #FFF"><a href="http://lod-cloud.net/"> LOD Cloud </a> </li>
+    <li class="next" style="color: #FFF"><a href="http://lov.okfn.org/dataset/lov/">LOV</a> </li>
+    <li class="next" style="color: #FFF"><a href="https://jena.apache.org/">Apache Jena</a> </li>
+    <li class="next" style="color: #FFF"><a href="http://rdf4j.org/">rdf4j (Sesame)</a> </li>
+    <li class="next" style="color: #FFF"><a href="https://owlcs.github.io/owlapi/">OWL API</a> </li>
+    <li class="next" style="color: #FFF"><a href="http://protege.stanford.edu/">Protege</a> </li>
+
+</section>
+
+
+<section class="slide" id="rest">
+    <h2 class="shout" style="color: #FFF">Let's talk about REST</h2>
+</section>
+
+<section class="slide" id="is this rest">
+    <h2>Is This Restful</h2>
+    <li class="next">GET /delete_user.x?id=123</li>
+    <li class="next">GET /user/delete</li>
+    <li class="next">GET /new_user.x</li>
+    <li class="next">GET /user/new</li>
+    <li class="next">GET /user?id=1</li>
+    <li class="next">GET /user/id/1</li>
+</section>
+
+<section class="slide" id="is this rest2">
+    <h2>Is This Restful</h2>
+    <li class="next">GET /user/2</li>
+    <li class="next">DELETE /user/2</li>
+    <li class="next">PUT /user</li>
+</section>
+
+<section class="slide black" id="no restful URIs">
+    <h2 class="cover" style="color: #FFF">There is NO restful URIs :)</h2>
+</section>
+
+<section class="slide black" id="hateoas">
+    <h2 class="cover" style="color: #FFF">Pay more attention to the Representations</h2>
+</section>
+
+<section class="slide" id="RPC">
+    <h2>What about RPC/RMI</h2>
+    <li class="next">CORBA</li>
+    <li class="next">XML-RPC</li>
+    <li class="next">JSON-RPC</li>
+    <li class="next">SOAP</li>
+</section>
+
+<section class="slide">
+    <h2>XML-RPC</h2>
+		<pre>
+            <code>
+&lt?xml version="1.0"?&gt
+&ltmethodCall&gt
+    &ltmethodName&gtexamples.getStateName&lt/methodName&gt
+    &ltparams&gt
+        &ltparam&gt
+        &ltvalue&gt&lti4&gt40&lt/i4&gt&lt/value&gt
+        &lt/param&gt
+    &lt/params&gt
+&lt/methodCall&gt
+            </code>
+</pre>
+</section>
+
+<section class="slide">
+    <h2>JSON-RPC</h2>
+		<pre>
+            <code>
+--> {"method": "echo", "params": ["Hello JSON-RPC"], "id": 1}
+<-- {"result": "Hello JSON-RPC", "error": null, "id": 1}
+            </code>
+</pre>
+</section>
+
+
+<section class="slide black" id="rest?">
+    <h2 style="color: #FFF" style="color: #FFF">What Really is REST?</h2>
+    <h2 style="color: #FFF" class="next">Hypermedia Driven</h2>
+    <p><a class="next" href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">
+        The dissertation of Roy Fielding
+    </a></p>
+    <p><a class="next" href="http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven">
+        Nice discussion
+    </a></p>
+</section>
+
+<section class="slide" id="Rest Formats">
+    <h2>Some Rest-able formats</h2>
+    <li class="next"><a href="http://www.hydra-cg.com/">HYDRA</a></li>
+    <li class="next">SIREN</li>
+    <li class="next">Collection+JSON</li>
+    <li class="next"><a href="http://stateless.co/hal_specification.html">HAL</a></li>
+    <li class="next">JSON Hyper-Schema</li>
+    <li class="next">json-home</li>
+</section>
+
+<section class="slide" id="hal1">
+    <h5>HAL</h5>
+		<pre>
+            <code>
+"_links": {
+"curies": [ {
+"name": "doc",
+"href": "http://haltalk.herokuapp.com/docs/{rel}",
+"templated": true
+}],
+"doc:latest-posts": {
+"href": "/posts/latest"
+}}
+            </code>
+        </pre>
+</section>
+
+<section class="slide" id="hydra">
+    <h2>HYDRA</h2>
+    <p class="next">JSON-LD +</p>
+    <p class="next">HYDRA Vocab + </p>
+    <p class="next">hypermedia controls =</p>
+    <p class="next">RESTful API</p>
+</section>
+
+<section class="slide" id="hydra1">
+		<pre class="cover">
+            <code>
+GET https://api.example.com/player/1234567890
+{
+"@context": {
+"@vocab": "https://schema.org/",
+"image": { "@type": "@id" },
+"friends": { "@type": "@id" }
+},
+            </code>
+</pre>
+    https://sookocheff.com/post/api/on-choosing-a-hypermedia-format/
+</section>
+
+<section class="slide" id="hydra2">
+		<pre class="cover">
+            <code>
+"@id": "https://api.example.com/player/1234567890",
+"playerId": "1234567890",
+"name": "Kevin Sookocheff",
+"alternateName": "soofaloofa",
+"image": "https://api.example.com/player/1234567890/avatar.png",
+"friends": "https://api.example.com/player/1234567890/friends"
+}
+            </code>
+</pre>
+</section>
+
+<section class="slide" id="hydra3">
+		<pre class="cover">
+            <code>
+"operation": {
+"@type": "BefriendAction",
+"method": "POST",
+"expects": {
+"@id": "http://schema.org/Person",
+"supportedProperty": [
+{ "property": "name", "range": "Text" },
+{ "property": "alternateName", "range": "Text" },
+{ "property": "image", "range": "URL" }
+]}}
+            </code>
+</pre>
+</section>
+
+<section class="slide" id="spring rest">
+    <h2 class="shout">Rest with Spring?</h2>
+</section>
+
+
+<section class="slide" id="spring hateoas1">
+    <h2 class="shout">Spring HATEOAS</h2>
+</section>
+
+<section class="slide" id="spring hateoas2">
+		<pre class="cover">
+            <code>
+public class Greeting extends ResourceSupport {
+private final String content;
+@JsonCreator
+public Greeting(@JsonProperty("content") String content) {
+this.content = content;
+}
+public String getContent() {
+return content;
+}
+}
+            </code>
+            </pre>
+</section>
+
+<section class="slide" id="spring hateoas3">
+		<pre class="cover">
+            <code>
+@RestController
+public class GreetingController {
+private static final String TEMPLATE = "Hello, %s!";
+@RequestMapping("/greeting")
+public HttpEntity&ltGreeting&gt greeting(
+@RequestParam(value = "name", defaultValue = "World") String name) {
+Greeting greeting = new Greeting(String.format(TEMPLATE, name));
+<mark>greeting.add(linkTo(methodOn(
+GreetingController.class).greeting(name)).withSelfRel());</mark>
+return new ResponseEntity&ltGreeting&gt(greeting, HttpStatus.OK);
+}
+            </code>
+            </pre>
+</section>
+
+<section class="slide" id="spring hateoas4">
+		<pre class="cover">
+            <code>
+{
+"content":"Hello, World!",
+    "_links":{
+        "self":{
+            "href":"http://localhost:8080/greeting?name=World"
+        }
+    }
+}
+            </code>
+            </pre>
+</section>
+
+<section class="slide" id="spring data rest">
+    <h2 class="shout">Spring Data Rest</h2>
+</section>
+
+<section class="slide" id="spring data rest1">
+		<pre class="cover">
+            <code>
+@Entity
+public class Person {
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)
+private long id;
+private String firstName;
+private String lastName;
+...
+}
+
+            </code>
+        </pre>
+</section>
+
+<section class="slide" id="spring data rest2">
+		<pre class="cover">
+            <code>
+@RepositoryRestResource(collectionResourceRel = "people",
+                path = "people")
+public interface PersonRepository extends
+    PagingAndSortingRepository&ltPerson, Long&gt {
+
+List&ltPerson&gt findByLastName(@Param("name") String name);
+
+}
+            </code>
+        </pre>
+</section>
+
+<section class="slide" id="spring data rest3">
+		<pre class="cover">
+            <code>
+$ curl http://localhost:8080
+{
+    "_links" : {
+    "people" : {
+    "href" : "http://localhost:8080/people{?page,size,sort}",
+    "templated" : true
+    }
+    }
+}
+            </code>
+        </pre>
+</section>
+
+<section class="slide" id="spring data rest4">
+		<pre class="cover">
+            <code>
+{ "_links" : { "self" : {
+"href" : "http://localhost:8080/people{?page,size,sort}",
+"templated" : true
+}, "search" : {
+"href" : "http://localhost:8080/people/search"
+} },
+"page" : {
+"size" : 20,
+"totalElements" : 0,
+"totalPages" : 0,
+"number" : 0
+} }
+</code>
+</pre>
+</section>
+
+<section class="slide" id="spring json-ld">
+    <h2 class="shout">Spring Hydra-Java</h2>
+</section>
+
+<section class="slide" id="spring json-ld1">
+		<pre class="cover">
+            <code>
+enum BusinessFunction {
+@Expose("gr:LeaseOut") RENT,
+@Expose("gr:Sell") FOR_SALE,
+@Expose("gr:Buy") BUY
+}
+@Term(define = "gr", as = "http://purl.org/goodrelations/v1#")
+class Offer {
+public BusinessFunction businessFunction;
+...
+}
+            </code>
+            </pre>
+</section>
+
+<section class="slide" id="spring json-ld2">
+		<pre class="cover">
+            <code>
+{
+"@context": {
+"@vocab": "http://schema.org/",
+"gr": "http://purl.org/goodrelations/v1#",
+"businessFunction": {"@type": "@vocab"},
+"RENT": "gr:LeaseOut"
+},
+"@type": "Offer",
+"businessFunction": "RENT"
+}
+            </code>
+            </pre>
+</section>
+
+<section class="slide black" id="Why Rest">
+    <h2 style="color: #FFF">Why Rest?</h2>
+    <h2 style="color: #FFF">Do you need it?</h2>
+
+</section>
+
+<section class="slide" id="thankyou">
+    <span class="place">
+    <h2>Thank you!</h2>
+    Kalin Maldzhanski<br/>
+    @djodjoni</span>
+</section>
+
+<section class="slide" id="LOV">
+    <h3>Oh, and btw ...</h3>
+    <h1 class="shout grow next">all you need is LOV :)</h1>
+
+</section>
+
+
+<p class="badge">
+    <a href="https://github.com/shower/shower">Powered by Shower</a>
+</p>
+<!--
+    To hide progress bar from entire presentation
+    just remove “progress” element.
+    -->
+<div class="progress"></div>
+<script src="shower/shower.min.js"></script>
+</body>
+</html>
