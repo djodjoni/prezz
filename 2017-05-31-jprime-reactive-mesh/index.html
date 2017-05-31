@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Reactive Mesh</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="shower/themes/mk1/styles/screen-16x10.css">
+</head>
+<body class="shower list">
+<header class="caption">
+    <h1>Reactive Mesh</h1>
+
+    <p>Kalin Maldzhanski</p>
+</header>
+<section class="slide black" id="cover">
+    <h2 class="shout grow" style="color: #FFF">Reactive Mesh</h2>
+</section>
+
+<section class="slide black" id="whatis_reactive_1">
+    <h2 class="shout srink" style="color: #FFF">What is Reactive?</h2>
+</section>
+
+<section class="slide" id="whatis_reactive_2">
+    <h2 class="width">What is Reactive?</h2>
+    <blockquote>
+        we want systems that are Responsive, Resilient, Elastic and Message Driven. We call these Reactive Systems.
+    </blockquote>
+    <em><a target="_blank" href="http://www.reactivemanifesto.org/">Reactive Manifesto</a></em>
+</section>
+
+<section class="slide" id="whatis_reactive_3">
+    <h2>What is Reactive?</h2>
+    <strong>React on Messages as they come</strong><br/>
+    <em>Essentially processing live data in a non-blocking potentially async manner</em>
+</section>
+
+
+<section class="slide" id="fault tolerant">
+    <h2 class="cover">Fault Tolerant</h2>
+</section>
+
+<section class="slide" id="backpressure">
+    <h2 class="cover">Backpressure</h2>
+</section>
+
+<section class="slide" id="whatis_reactive_4">
+    <h2>What about ...?</h2>
+    <li class="next">Iterator</li>
+    <li class="next">Observer</li>
+    <li class="next">Java 8 Streams</li>
+    <li class="next">Callbacks/Futures/Promises</li>
+    <li class="next">Message Queues</li>
+    <li class="next">Vavr/Javaslang/FunctionalJava</li>
+</section>
+
+<section class="slide" id="why_reactive_1">
+    <h2>Why Reactive?</h2>
+    <li class="next">clear & declarative control/data flow</li>
+    <li class="next">... possibly across async boundaries</li>
+    <li class="next">... and seamlessly scalable</li>
+    <li class="next">responsiveness, non-blocking</li>
+    <li class="next">does not block consumer when it reads, events are pushed</li>
+    <li class="next">does not block producer when it writes, consumer notifies the producer when ready(backpressure)
+    </li>
+    <li class="next">more efficient CPU/memory utilization</li>
+</section>
+
+
+<section class="slide" id="libraries">
+    <h2>Reactive Libraries</h2>
+    <li class="next">RxJava 1/2</li>
+    <li class="next">Reactor Core</li>
+    <li class="next">Akka Stream</li>
+    <li class="next">Reactive Streams</li>
+    <li class="next">Java 9 Flow</li>
+</section>
+
+<section class="slide" id="libraries2">
+    <h2>Reactive Enabled Libraries</h2>
+    <br/>
+    <h2 class="next">Many</h2>
+</section>
+
+
+<section class="slide" id="rxJava1">
+    <h2>RxJava 1.x</h2>
+    <li class="next">Observable</li>
+    <li class="next">Single, Completable</li>
+    <li class="next">Observer</li>
+    <li class="next">Subscription</li>
+    <li class="next">Subject</li>
+</section>
+
+<section class="slide" id="rxJava2">
+    <h2>RxJava 2.x</h2>
+    <li class="next">Observable / Flowable</li>
+    <li class="next">Maybe, Single, Completable</li>
+    <li class="next">Observer / FlowableSubscriber</li>
+    <li class="next">Disposable / Subscription</li>
+    <li class="next">Subject / FlowableProcessor</li>
+</section>
+
+<section class="slide" id="Reactor">
+    <h2>Reactor Core</h2>
+    <li class="next">Flux</li>
+    <li class="next">Mono</li>
+    <li class="next">Subscriber</li>
+    <li class="next">Subscription</li>
+    <li class="next">FluxProcessor</li>
+</section>
+
+<section class="slide" id="Akka Streams">
+    <h2>Akka Streams</h2>
+    <li class="next">Source</li>
+    <li class="next">Sink</li>
+    <li class="next">Flow</li>
+    <li class="next">Graph</li>
+    <li class="next">Materializer</li>
+</section>
+
+<section class="slide" id="reactive streams">
+    <h2>Reactive Streams</h2>
+    <li class="next">Publisher</li>
+    <li class="next">Subscriber</li>
+    <li class="next">Subscription</li>
+    <li class="next">Processor</li>
+</section>
+
+<section class="slide" id="reactive streams2">
+<pre class="cover"><code style="font-size: small">
+public interface Subscriber&lt;T&gt; {
+    public void onSubscribe(Subscription s);
+    public void onNext(T t);
+    public void onError(Throwable t);
+    public void onComplete();
+}
+
+public interface Publisher&lt;T&gt; {
+    public void subscribe(org.reactivestreams.Subscriber&lt;? super T&gt; s);
+}
+
+public interface Subscription {
+    public void request(long n);
+    public void cancel();
+}
+
+public interface Processor&lt;T, R&gt; extends Subscriber&lt;T&gt;, Publisher&lt;R&gt; {
+}
+</code></pre>
+</section>
+
+<section class="slide" id="reactive streams3">
+    <h1>Reactive Streams</h1>
+    <div class="svg-layer">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="" pageAlignment="none" x="0px" y="0px" width="842px" height="595px" viewBox="0 0 842 595" enable-background="new 0 0 842 595" xml:space="preserve"><defs/><g type="LAYER" name="workspace" id="workspace" locked="true"/><g id="Layer 01" type="LAYER" name="Layer 01"><path transform="matrix(1 0 0 1 66.71908602150475 73.57526881720429)" width="193.53494623655914" height="94.36827956989248" stroke-miterlimit="3" stroke="#000000" fill="#13CE0B" d="M0,0 L193.53494623655914,0 L193.53494623655914,94.36827956989248 L0,94.36827956989248 L0,0 Z "/><text type="textBox" transform="matrix(0.9999999999999994 0 0 0.9999999999999999 108.3051075268805 110.36290322580632)" width="103.96505376344084" height="25" stroke-miterlimit="3" stroke="none" fill="#000000" font-family="Arial" font-size="22" text-align="left" text-anchor="start"><tspan x="0" y="22"><![CDATA[Publisher]]></tspan></text><path transform="matrix(0.9999999999999999 0 0 0.9999999999999999 564.1518817204313 77.57392473118267)" width="193.53494623655914" height="94.36827956989248" stroke-miterlimit="3" stroke="#000000" fill="#241BFD" d="M0,0 L193.53494623655914,0 L193.53494623655914,94.36827956989248 L0,94.36827956989248 L0,0 Z "/><text type="textBox" transform="matrix(0.9999999999999994 0 0 0.9999999999999998 605.7379032258019 114.36155913978416)" width="103.96505376344084" height="25" stroke-miterlimit="3" stroke="none" fill="#000000" font-family="Arial" font-size="22" text-align="left" text-anchor="start"><tspan x="0" y="22"><![CDATA[Publisher]]></tspan></text><path transform="matrix(0.9999999999999999 0 0 0.9999999999999999 564.1518817204305 338.28629032258056)" width="193.53494623655914" height="94.36827956989248" stroke-miterlimit="3" stroke="#000000" fill="#F50F0F" d="M0,0 L193.53494623655914,0 L193.53494623655914,94.36827956989248 L0,94.36827956989248 L0,0 Z "/><text type="textBox" transform="matrix(0.9999999999999992 0 0 0.9999999999999998 604.6968752682444 375.07392473118176)" width="145.55107526881662" height="25" stroke-miterlimit="3" stroke="none" fill="#000000" font-family="Arial" font-size="22" text-align="left" text-anchor="start"><tspan x="0" y="22"><![CDATA[Subscription]]></tspan></text><path transform="matrix(1 0 0 1 404.20564516129446 49.58333333333326)" width="124.75806451612902" height="51.98252688172033" stroke-width="0.595895753924085" stroke-miterlimit="3" stroke="#000000" fill="#F50F0F" d="M0,0 L124.75806451612902,0 L124.75806451612902,51.98252688172033 L0,51.98252688172033 L0,0 Z "/><text type="textBox" transform="matrix(0.6446280991735533 0 0 0.5508474576271174 421.7997311828009 70.3763440860215)" width="156.31668734491333" height="25" stroke-miterlimit="3" stroke="none" fill="#000000" font-family="Arial" font-size="22" text-align="left" text-anchor="start"><tspan x="0" y="22"><![CDATA[Subscription]]></tspan></text><path width="271.9086021505377" height="27.11546900235078" stroke-width="0.595895753924085" stroke-miterlimit="3" stroke="#000000" fill="#FFFFFF" d="M276.2486559139786,135.95430107526883 C320.6481462187327,121.15447097368417 444.98473336091456,98.89768889808258 488.97715053763454,113.56182795698928 C506.1227623885369,119.27703190729005 532.3422170105763,134.35483870967744 548.1572580645163,134.35483870967744 "/><path width="262.2769904446668" height="19.060856403612632" stroke-width="0.595895753924085" stroke-miterlimit="3" stroke="#000000" fill="#FFFFFF" d="M552.9556451612905,159.9462365591398 C490.4133679204657,173.11303176773453 430.5432083200146,171.1424731182796 369.01747311827967,171.1424731182796 C353.2080312619604,171.1424731182796 303.81092210240695,163.51656726369717 295.44220430107544,155.14784946236563 C288.1707716909176,147.8764168522078 289.0983783300363,155.96108651799295 298.64112903225816,158.3467741935484 "/><text type="textBox" transform="matrix(1 0 0 0.9999999999999999 276.3218053138843 65.57795698924733)" width="161.5456989247313" height="25" stroke-miterlimit="3" stroke="none" fill="#000000" font-family="Arial" font-size="22" text-align="left" text-anchor="start"><tspan x="0" y="22"><![CDATA[OnSubscribe]]></tspan></text><path width="15.918958309768982" height="12.795698924731198" stroke-miterlimit="3" stroke="#000000" fill="#241BFD" d="M541.7594086021508,127.95698924731184 C552.6948536740651,141.62629558720488 563.0810810771036,139.15322580645164 541.7594086021508,139.15322580645164 C536.6007822338466,139.15322580645164 538.5604838709679,137.9932553521263 538.5604838709679,140.75268817204304 "/><path width="13.056960211201215" height="14.362199676210054" stroke-miterlimit="3" stroke="#000000" fill="#241BFD" d="M303.4395161290324,156.74731182795702 C274.6153067407479,145.21762807264324 301.840053763441,157.06504807243275 301.840053763441,166.3440860215054 "/><text type="textBox" transform="matrix(1 0 0 0.9999999999999999 349.82392473118455 187.43279569892474)" width="161.5456989247313" height="25" stroke-miterlimit="3" stroke="none" fill="#000000" font-family="Arial" font-size="22" text-align="left" text-anchor="start"><tspan x="0" y="22"><![CDATA[Subscribe()]]></tspan></text><path width="15.884201604560872" height="151.94892473118284" stroke-width="0.40439045008036856" stroke-miterlimit="3" stroke="#000000" fill="#FFFFFF" d="M650.5228494623658,337.486559139785 C650.5228494623658,302.9695093641454 645.4857670473359,263.2666092300124 653.7217741935486,230.32258064516134 C657.0548458131425,216.99029416678576 664.9180107526884,201.0949840549698 664.9180107526884,185.53763440860217 "/><path width="6.397849462365571" height="9.596774193548356" stroke-width="0.40439045008036856" stroke-miterlimit="3" stroke="#000000" fill="#FFFFFF" d="M663.3185483870969,183.9381720430108 C662.9856412772205,184.77043981770214 656.9206989247314,193.44150939672778 656.9206989247314,193.53494623655916 "/><path width="9.596774193548413" height="11.196236559139777" stroke-width="0.40439045008036856" stroke-miterlimit="3" stroke="#000000" fill="#FFFFFF" d="M664.9180107526884,183.9381720430108 C667.988660608505,187.77648436278156 674.5147849462368,190.21897047303833 674.5147849462368,195.1344086021506 "/><text type="textBox" transform="matrix(0.9999999999999996 0 0 0.9999999999999999 604.9381720430135 238.61559139784993)" width="105.56451612903037" height="25" stroke-miterlimit="3" stroke="none" fill="#000000" font-family="Arial" font-size="22" text-align="left" text-anchor="start"><tspan x="0" y="22"><![CDATA[OnNext()]]></tspan></text><path width="75.17473118279571" height="31.989247311827967" stroke-miterlimit="3" stroke="none" fill="#FFFFFF" fill-opacity="0.08666666666666667" d="M173.88306451612914,342.2849462365592 C189.44601421914962,364.51773152658836 222.8436630721277,374.2741935483872 249.05779569892485,374.2741935483872 "/><path transform="matrix(-0.02981941340048858 0.9995553024142539 -0.9995553024142539 -0.02981941340048858 740.5343238966881 28.368867142270105)" width="146.15413264949663" height="19.060856403612604" stroke-width="0.4448317166603696" stroke-miterlimit="3" stroke="#000000" fill="#FFFFFF" d="M308.13512300554373,159.9462365591396 C273.2833723103733,173.11303176773424 239.92066202017378,171.14247311827955 205.6353804604508,171.14247311827955 C196.8255521248978,171.14247311827955 169.29896036262824,163.5165672636972 164.63548344241377,155.14784946236568 C160.5834698652597,147.87641685220763 161.10037965422163,155.96108651799295 166.41808766058926,158.3467741935484 "/><path transform="matrix(-0.020677638809405548 -0.9997861947702964 0.9997861947702964 -0.020677638809405548 584.0758448554088 492.6661312301743)" width="146.15413264949663" height="19.060856403612604" stroke-width="0.4448317166603696" stroke-miterlimit="3" stroke="#000000" fill="#FFFFFF" d="M308.13512300554373,159.9462365591396 C273.2833723103733,173.11303176773424 239.92066202017378,171.14247311827955 205.6353804604508,171.14247311827955 C196.8255521248978,171.14247311827955 169.29896036262824,163.5165672636972 164.63548344241377,155.14784946236568 C160.5834698652597,147.87641685220763 161.10037965422163,155.96108651799295 166.41808766058926,158.3467741935484 "/><text type="textBox" transform="matrix(0.9999999999999996 0 0 0.9999999999999999 487.37768817204585 251.41129032258073)" width="105.56451612903037" height="25" stroke-miterlimit="3" stroke="none" fill="#000000" font-family="Arial" font-size="22" text-align="left" text-anchor="start"><tspan x="0" y="22"><![CDATA[Request()]]></tspan></text><text type="textBox" transform="matrix(0.9999999999999996 0 0 0.9999999999999999 715.3010752688195 247.91666666666686)" width="105.56451612903037" height="25" stroke-miterlimit="3" stroke="none" fill="#000000" font-family="Arial" font-size="22" text-align="left" text-anchor="start"><tspan x="0" y="22"><![CDATA[Cancel()]]></tspan></text><path width="15.994623655913983" height="15.345418621756892" stroke-miterlimit="3" stroke="rgb(0, 0, 0)" fill="#000000" fill-opacity="0" d="M559.353494623656,318.29301075268825 C569.5270061490822,335.24886329506523 575.34811827957,334.79411682890316 575.34811827957,315.09408602150546 "/><path width="17.59408602150529" height="17.867997454974045" stroke-miterlimit="3" stroke="rgb(0, 0, 0)" fill="#000000" fill-opacity="0" d="M738.4932795698927,313.49462365591404 C735.0058009119299,319.3070880858519 732.0954301075271,319.98996730385755 732.0954301075271,324.6908602150538 C732.0954301075271,337.23781536341767 749.6895161290324,329.7471360988621 749.6895161290324,321.49193548387103 "/></g></svg>
+    </div>
+    <div class="html-layer"/>
+</section>
+
+<section class="slide" id="interop">
+    <h2>Why Reactive Streams?</h2>
+    <br/>
+    <h2 class="next">Interoperability</h2>
+    <p class="next"><a href="https://github.com/reactive-streams/reactive-streams-jvm/tree/master/tck">
+        Reactive Streams TCK
+    </a></p>
+</section>
+
+<section class="slide" id="flow example1">
+    <h2> Marbles</h2>
+    <img width="70%" src="http://reactivex.io/documentation/operators/images/mergeMap.png"/>
+    <div>
+        <a href="http://rxmarbles.com/#map">http://rxmarbles.com/</a>
+    </div>
+</section>
+
+<section class="slide" id="flow example2">
+    <h2>Akka Runnable Graph</h2>
+    <img width="80%" src="http://doc.akka.io/docs/akka/current/images/compose_graph.png"/>
+</section>
+
+<section class="slide" id="flow example2_1">
+    <h2>Akka Runnable Graph</h2>
+    <pre><code style="font-size: small">
+  final Outlet&lt;Integer&gt; A = builder.add(Source.single(0)).out();
+  final UniformFanOutShape&lt;Integer, Integer&gt; B = builder.add(Broadcast.create(2));
+  final UniformFanInShape&lt;Integer, Integer&gt; C = builder.add(Merge.create(2));
+  final FlowShape&lt;Integer, Integer&gt; D =
+    builder.add(Flow.of(Integer.class).map(i -&gt; i + 1));
+  final UniformFanOutShape&lt;Integer, Integer&gt; E = builder.add(Balance.create(2));
+  final UniformFanInShape&lt;Integer, Integer&gt; F = builder.add(Merge.create(2));
+  final Inlet&lt;Integer&gt; G = builder.add(Sink.&lt;Integer&gt; foreach(System.out::println)).in();
+
+  builder.from(F).toFanIn(C);
+  builder.from(A).viaFanOut(B).viaFanIn(C).toFanIn(F);
+  builder.from(B).via(D).viaFanOut(E).toFanIn(F);
+  builder.from(E).toInlet(G);
+</code></pre>
+</section>
+
+<section class="slide" id="simple Flow">
+    <ul>
+        <li class="next">Rx Java 1.x<br/>
+            <code style="font-size: medium">
+                Observable.range(1, 100).map(i -> i + 33)
+                .subscribe(System.out::println);
+            </code>
+        </li>
+        <li class="next">Rx Java 2.x<br/>
+            <code style="font-size: medium">
+                Flowable.range(1, 100).map(i -> i + 33)
+                .subscribe(System.out::println);
+            </code>
+        </li>
+        <li class="next">Reactor 3.x<br/>
+            <code style="font-size: medium">
+                Flux.range(1, 100).map(i -> i + 33)
+                .subscribe(System.out::println);
+            </code>
+        </li>
+        <li class="next">Akka Streams<br/>
+            <code style="font-size: medium">
+                Source.range(1, 100).map(i -> i + 33)
+                .runForeach(System.out::println, materializer);
+            </code>
+        </li>
+    </ul>
+</section>
+
+<section class="slide" id="create source1">
+    <h2>Create Source RxJava 1.x</h2>
+    <pre><code style="font-size: small">
+        Observable.just(8);
+        Observable.from(new Integer[]{8});
+        Observable.fromCallable(() -> 8);
+        Observable.empty();
+        Observable.never();
+        Observable.error(new IllegalStateException("why 8"));
+        Observable.create(subscriber -> {
+            subscriber.onNext(8);
+            subscriber.onCompleted();
+        });
+    </code></pre>
+</section>
+
+<section class="slide" id="create source2">
+    <h2>Create Source RxJava 2.x</h2>
+    <table>
+        <tr>
+            <td>
+    <pre><code style="font-size: small">
+Observable.just(8);
+Observable.fromArray(new Integer[]{8});
+Observable.fromCallable(() -> 8);
+Observable.fromFuture(new IntFuture(8));
+Observable.fromIterable(Arrays.asList(new Integer[]{8}));
+Observable.fromPublisher(new IntPublisher(8));
+Observable.empty();
+Observable.never();
+Observable.error(new IllegalStateException("why 8"));
+Observable.create(e -> {
+    e.setCancellable(() -> {});
+    e.onNext(8);
+    e.onComplete();});
+    </code></pre>
+            </td>
+            <td>
+    <pre><code style="font-size: small">
+Flowable.just(8);
+Flowable.fromArray(8);
+Flowable.fromCallable(() -> 8);
+Flowable.fromFuture(new IntFuture(8));
+Flowable.fromIterable(Arrays.asList(new Integer[]{8}));
+Flowable.fromPublisher(new IntPublisher(8));
+Flowable.empty();
+Flowable.never();
+Flowable.error(new IllegalStateException("why 8"));
+Flowable.create(emitter -> {
+    emitter.setCancellable(() -> {});
+    emitter.onNext(8);
+    emitter.onComplete();}, BackpressureStrategy.BUFFER);
+    </code></pre>
+            </td>
+        </tr>
+    </table>
+</section>
+
+<section class="slide" id="create source3">
+    <h2>Create Source Reactor</h2>
+    <pre><code style="font-size: small">
+        Flux.just(8);
+        Flux.fromArray(new Integer[]{8});
+        Flux.from(new IntPublisher(8));
+        Flux.fromIterable(Arrays.asList(new Integer[]{8}));
+        Flux.fromStream(Stream.of(8));
+        Flux.empty();
+        Flux.never();
+        Flux.error(new IllegalStateException("why 8"));
+        Flux.create(e -> {
+            e.onDispose(()->{});
+            e.next(8);
+            e.complete();
+        }, FluxSink.OverflowStrategy.BUFFER);
+    </code></pre>
+</section>
+
+
+<section class="slide black" id="testing">
+    <h2 class="shout shrink" style="color: #FFF">Testing Reactive Code</h2>
+</section>
+
+<section class="slide" id="testing1">
+    <h2>Testing RxJava</h2>
+
+        <pre><code style="font-size: small">
+TestSubscriber&lt;Integer&gt; ts = Flowable.range(1, 5).test();
+
+TestObserver&lt;Integer&gt; to = Observable.range(1, 5).test();
+
+TestObserver&lt;Integer&gt; tso = Single.just(1).test();
+
+TestObserver&lt;Integer&gt; tmo = Maybe.just(1).test();
+
+TestObserver&lt;Integer&gt; tco = Completable.complete().test();
+            </code></pre>
+</section>
+
+<section class="slide black" id="performance">
+    <h2 class="shout shrink" style="color: #FFF">Performance</h2>
+</section>
+
+<section class="slide" id="performance1">
+    <img height="70%"
+         src="https://4.bp.blogspot.com/-V_cLB3fnjQM/WGJ4q3uAqBI/AAAAAAAAHiQ/TpuXI4nHu0gvPBXsrvKGk0y4w4C8Hn6vACLcB/s640/Scrabble_12_14.jpg">
+    <br/>
+    <em style="font-size: small"><a href="http://akarnokd.blogspot.bg/2016/12/the-reactive-scrabble-benchmarks.html">
+        http://akarnokd.blogspot.bg/2016/12/the-reactive-scrabble-benchmarks.html
+    </a> </em>
+</section>
+
+<section class="slide black" id="fusion">
+    <h2 class="shout shrink" style="color: #FFF">Fusion</h2>
+</section>
+
+
+<section class="slide" id="fusion1">
+    <h2>Fusion?</h2>
+    <ul>
+        <li>
+            many sequences are started from constant or quasi-constant sources such as just(), from(T[]), from(Iterable), fromCallable() which don't really need the thread-safety dance in a sequence of operators
+        </li>
+        <li>
+            some pairs of operators can share internal components such as Queues
+        </li>
+        <li>
+            some operators can tell if they consumed the value or dropped it, avoiding request(1) call overhead
+        </li>
+    </ul>
+    <em style="font-size: small"><a href="http://akarnokd.blogspot.bg/2016/03/operator-fusion-part-1.html">
+        http://akarnokd.blogspot.bg/2016/03/operator-fusion-part-1.html
+    </a> </em>
+</section>
+
+<section class="slide" id="fusionmacro">
+    <h2>Macro Fusion</h2>
+    <ul>
+        <li>
+            Replacing an operator with another operator
+        </li>
+        <li>
+            Replacing an operator with custom operator
+        </li>
+        <li>
+            Replacing during subscription time
+        </li>
+        <li>
+            Replacing with the same operator but with different params
+        </li>
+    </ul>
+</section>
+
+
+<section class="slide" id="fusionmicro">
+    <h2>Micro Fusion</h2>
+    <ul>
+        <li>
+            Conditional Subscriber
+        </li>
+        <li>
+            Synchronous-fusion
+        </li>
+        <li>
+            Asynchronous-fusion
+        </li>
+    </ul>
+</section>
+
+<section class="slide" id="react" style="text-align:center">
+    <h2>Don't Block, React !</h2>
+    <img width="70%" src="http://www.showcase-portfolio.info/tacoshow/site_lists/shcl/1236652643/photo1"/>
+</section>
+
+<section class="slide" id="thankyou" style="text-align:center">
+    <span class="place">
+    <h2>Thank you!</h2>
+     <p class="next">
+    <h2>Cheers!</h2>
+        <img width="90%"
+             src="http://3.bp.blogspot.com/_Hzs7Y5zsV6U/THQWNMzkgsI/AAAAAAAAAck/qpDfgI-ird0/s1600/rakija1.jpg"/>
+        <br/>
+    Kalin Maldzhanski<br/>
+    @djodjoni<br/>
+    <a href="https://djodjoni.github.io/prezz/2017-05-31-jprime-reactive-mesh">
+        https://djodjoni.github.io/prezz/2017-05-31-jprime-reactive-mesh
+    </a>
+    </span>
+    </p>
+</section>
+
+
+<p class="badge">
+    <a href="https://github.com/shower/shower">Powered by Shower</a>
+</p>
+<!--
+    To hide progress bar from entire presentation
+    just remove “progress” element.
+    -->
+<div class="progress"></div>
+<script src="shower/shower.min.js"></script>
+</body>
+</html>
