@@ -326,8 +326,8 @@ data class Event(
                 <pre><code class="hljs" style="word-wrap: break-word;">
 class TasksAR {
     fun createTask() {}
-    fun updateTitle(taskID:Int) {}
-    fun updateContent(taskID:Int) {}
+    fun updateTitle(taskID:Int, title: String) {}
+    fun updateContent(taskID:Int, content: String) {}
     fun activateTask(taskID:Int) {}
     fun completeTask(taskID:Int) {}
     fun deleteTask(taskID:Int) {}
@@ -336,11 +336,18 @@ class TasksAR {
             </pre>
             </section>
             <section>
-                mTasksRepository.XXX -> mTasksAR.XXX
+                mTasksRepository.XXX --> mTasksAR.XXX
             </section>
         </section>
 
-        <section>Identify Commands & Events
+        <section>Firebase as remote event store
+            <section>
+                <ul>
+                    <span class="fragment"><li>Easy and Serverless</li></span>
+                    <span class="fragment"><li>Reactive - can subscribe to events</li></span>
+                    <span class="fragment"><li>Can easily hook up to Cloud Functions</li></span>
+                </ul>
+            </section>
         <section>
             <pre><code class="hljs" style="word-wrap: break-word;">
 
@@ -349,7 +356,6 @@ class TasksAR {
             </pre>
         </section>
             <section>
-                mTasksRepository
             </section>
         </section>
 
