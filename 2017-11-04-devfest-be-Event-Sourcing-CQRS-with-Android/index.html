@@ -254,9 +254,52 @@
                 </a><br>
                 <img src="img/mvp.png">
             </section>
+            <section>
+                Peek Inside Repository
+                <pre><code class="hljs" style="word-wrap: break-word;">
+     override fun completeTask(task: Task) {
+        checkNotNull(task)
+        mTasksRemoteDataSource.completeTask(task)
+        mTasksLocalDataSource.completeTask(task)
+
+        val completedTask = Task(task.title, task.description, task.id, true)
+
+        // Do in memory cache update to keep the app UI up to date
+        if (mCachedTasks == null) {
+            mCachedTasks = LinkedHashMap()
+        }
+        mCachedTasks!!.put(task.id, completedTask)
+    }
+            </code></pre>
+            </section>
 
             <section>
-                   To Be<br>
+                Peek Inside Repository
+                <pre><code class="hljs" style="word-wrap: break-word;">
+    override fun getTasks(): Flowable&ltList&ltTask&gt&gt {
+        // Respond immediately with cache if available and not dirty
+        if (mCachedTasks != null && !mCacheIsDirty) {
+            return Flowable.fromIterable(mCachedTasks!!.values).toList().toFlowable()
+        } else if (mCachedTasks == null) {
+            mCachedTasks = LinkedHashMap()
+        }
+
+        val remoteTasks = andSaveRemoteTasks
+
+        if (mCacheIsDirty) {
+            return remoteTasks
+        } else {
+            // Query the local storage if available. If not, query the network.
+            val localTasks = andCacheLocalTasks
+            return Flowable.concat(localTasks, remoteTasks)
+                    .filter { tasks -> !tasks.isEmpty() }
+                    .firstOrError()
+                    .toFlowable()
+        }
+    }
+            </code></pre>
+            </section>
+            <section>To Be ... "simpler"<br>
                 <img src="img/mvpCQRS.png">
             </section>
         </section>
@@ -339,6 +382,66 @@ class TasksAR {
                 mTasksRepository.XXX --> mTasksAR.XXX
             </section>
         </section>
+        <section>Persist events locally
+            <section>
+                <pre><code class="hljs" style="word-wrap: break-word;">
+@Entity(tableName = "events")
+data class Event(
+        @ColumnInfo(name = "subjectID")
+        var subjectID: String?,
+        @ColumnInfo(name = "userID")
+        var userID: String?,
+        @ColumnInfo(name = "datetime")
+        var datetime: Long,
+        @ColumnInfo(name = "eventHash")
+        var eventHash: String,
+        @ColumnInfo(name = "eventID")
+        var eventID: String,
+        @ColumnInfo(name = "eventData")
+        var eventData: Any?
+)
+                </code></pre>
+            </section>
+            <section>
+                <pre><code class="hljs" style="word-wrap: break-word;">
+@Dao interface EventsPublisher {
+    @Insert
+    fun publishEvent(task: Event)
+
+}
+                </code></pre>
+            </section>
+            <section>
+                <pre><code class="hljs" style="word-wrap: break-word;">
+class TasksAR
+@Inject constructor(val eventsPublisher:EventsPublisher) {
+    fun createTask() {
+        eventsPublisher.publishEvent(Event("createTask"))
+    }
+    fun updateTitle(taskID:Int, title:String) {
+        doValidate("updateTitle", taskID, title)
+        eventsPublisher.publishEvent(Event("updateTitle", taskID, title))
+    }
+    fun updateContent(taskID:Int, content:String) {
+        doValidate("createTask", taskID, content)
+        eventsPublisher.publishEvent(Event("createTask", taskID, content))
+    }
+    fun activateTask(taskID:Int) {
+        doValidate("createTask", taskID)
+        eventsPublisher.publishEvent(Event("createTask", taskID))
+    }
+    fun comcompleteTask(taskID:Int) {
+        doValidate("createTask", taskID)
+        eventsPublisher.publishEvent(Event("createTask", taskID))
+    }
+    fun deleteTask(taskID:Int) {
+        doValidate("createTask", taskID)
+        eventsPublisher.publishEvent(Event("createTask", taskID))
+    }
+}
+                </code></pre>
+            </section>
+        </section>
 
         <section>Firebase as remote event store
             <section>
@@ -348,14 +451,48 @@ class TasksAR {
                     <span class="fragment"><li>Can easily hook up to Cloud Functions</li></span>
                 </ul>
             </section>
-        <section>
-            <pre><code class="hljs" style="word-wrap: break-word;">
+            <section>
+                <img src="img/mvpCQRS2.png">
+            </section>
+            <section>
+                <img src="img/mvpCQRS3.png">
+            </section>
+            <section>
+                side effect: things like this will not be needed
+                <pre><code class="hljs" style="word-wrap: break-word;">
+  viewHolder.bindToPost(model, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View starView) {
+                        // Need to write to both places the post is stored
+                        DatabaseReference globalPostRef = mDatabase.child("posts").child(postRef.getKey());
+                        DatabaseReference userPostRef = mDatabase.child("user-posts").child(model.uid).child(postRef.getKey());
 
-
+                        // Run two transactions
+                        onStarClicked(globalPostRef);
+                        onStarClicked(userPostRef);
+                    }
+                });
             </code>
             </pre>
-        </section>
+            </section>
             <section>
+                we need to modify publisher listener to post to firebase<br>
+                and we need to listen for incoming events
+                <pre><code class="hljs" style="word-wrap: break-word;">
+FirebaseDatabase.getInstance().getReference().child("events")
+    .addChildEventListener(new ChildEventListener()
+    {
+        fun onChildAdded(dataSnapshot: DataSnapshot, s: String) {
+            postCommand(Command(dataSnapshot))
+        }
+    }
+                </code></pre>
+            </section>
+
+            <section>
+            <pre><code class="hljs" style="word-wrap: break-word;">
+           // TODO: Many more options and scenarios to consider.
+        </code></pre>
             </section>
         </section>
 
