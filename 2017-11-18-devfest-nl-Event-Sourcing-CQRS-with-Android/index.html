@@ -1,0 +1,600 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Kalin Maldzhanski">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Event Sourcing & CQRS with Android</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section><h1>Event Sourcing & CQRS ... & Android</h1>
+            GDG NL DevFest Season 2017
+            <br>
+            Kalin Maldzhanski @djodjoni
+        </section>
+        <aside class="notes"></aside>
+        <section><h2>Architectural Patterns ? </h2>
+            <section>
+            </section>
+            <section>
+                <h2>GUI Architectural Patterns ?</h2>
+            </section>
+            <section>
+                <aside class="notes">there are many variations of MVC that view subscribes to model events ,
+                and also modifies model,
+                    mvp where presenter does not control fully the view,b ut the view also listesnt to model events.
+
+                </aside>
+                <ul>
+                    <span class="fragment"><li>MVC</li></span>
+                    <span class="fragment"><li>MVP</li></span>
+                    <span class="fragment"><li>MVVM</li></span>
+                    <span class="fragment"><li>MVI</li></span>
+                </ul>
+            </section>
+            <section>
+               <p> Their Purpose:</p>
+                <ul>
+                    <span class="fragment"><li>Model interaction between a human and a computer</li></span>
+                    <span class="fragment"><li>Do it in an effective way </li></span>
+                </ul>
+            </section>
+        </section>
+
+        <section><h2> Event Driven ? </h2>
+            <section></section>
+            <section>
+                <h3>What do we use already</h3>
+                <ul>
+                    <span class="fragment"><li>Functional Programming</li></span>
+                    <span class="fragment"><li>Event Streams/Reactive streams</li></span>
+                    <span class="fragment"><li>Push Notifications</li></span>
+                    <span class="fragment"><li>HTTP SSE text/event-stream</li></span>
+                    <span class="fragment"><li>WebSocket, Firebase, Deepstream</li></span>
+                    <span class="fragment"><li>Kafka, Spark, RabbitMQ</li></span>
+                    <span class="fragment"><li>Actor Model, Akka, Vertx</li></span>
+                </ul>
+            </section>
+        </section>
+        <section><h2>How are we using events?</h2>
+            <section><p>Broadcast/Fire and Forget</p>
+                <ul>
+                    <span class="fragment"><li>Notify "post viewed"</li></span>
+                    <span class="fragment"><li>Notify "http request failed"</li></span>
+                    <span class="fragment"><li>Request to send email confirmation</li></span>
+                    <br>
+                    <span class="fragment"><li>Push Notifications</li></span>
+                    <span class="fragment"><li>UI events Notifications</li></span>
+                </ul>
+            </section>
+            <section><p>State Transfer </p>
+                <ul>
+                    <span class="fragment"><li>Live Data</li></span>
+                    <span class="fragment"><li>BehaviorSubject (RxBus)</li></span>
+                    <span class="fragment"><li>Room, SQLBrite</li></span>
+                    <span class="fragment"><li>Firebase</li></span>
+                </ul>
+            </section>
+            <section><p>Request Data</p>
+                <ul>
+                    <span class="fragment"><li>Query via event (event bus) and receive response</li></span>
+                </ul>
+            </section>
+        </section>
+
+        <section><h2>Event Sourcing?</h2>
+            <section>
+            </section>
+            <section>
+                No Wiki Page ?!?!
+            </section>
+            <section>
+                A pattern where the state of the domain model is represented as a sequence of events(changes)
+                rather than a single snapshot.
+            </section>
+
+            <section>Memento<br>
+                <img alt="Memento poster.jpg"
+                     src="//upload.wikimedia.org/wikipedia/en/thumb/c/c7/Memento_poster.jpg/220px-Memento_poster.jpg"
+                     class="thumbborder" srcset="//upload.wikimedia.org/wikipedia/en/c/c7/Memento_poster.jpg 1.5x"
+                     data-file-width="268" data-file-height="394" width="220" height="323">
+            </section>
+
+            <section>50 First Dates<br>
+                <img alt="50FirstDates.jpg"
+                     src="//upload.wikimedia.org/wikipedia/en/thumb/9/9d/50FirstDates.jpg/215px-50FirstDates.jpg"
+                     class="thumbborder" srcset="//upload.wikimedia.org/wikipedia/en/9/9d/50FirstDates.jpg 1.5x"
+                     data-file-width="299" data-file-height="401" width="215" height="288">
+            </section>
+            <section>
+                <img src="img/es0.png" width="130%" height="130%">
+            </section>
+
+            <section> Actually there is a wiki page :)</br>
+                <a target="_blank" href="https://en.wikipedia.org/wiki/History_of_accounting">
+                    History of accounting ...
+                    <blockquote>"more than 7,000 years ago in Mesopotamia"</blockquote>
+                </a></section>
+            <section>Do you use event sourced system?</section>
+
+        </section>
+
+        <section><h2>Not just Simple events</h2>
+            <ul>
+                <span class="fragment"><li>Events are the result of a successfully executed command</li></span>
+                <span class="fragment"><li>Events are immutable</li></span>
+                <span class="fragment"><li>Events are things that happened in the past</li></span>
+                <span class="fragment"><li>Events cannot be deleted</li></span>
+                <span class="fragment"><li>Events store enough information to recover the complete system state</li></span>
+                <span class="fragment"><li>Events are published to subscribers once they are stored</li></span>
+                <span class="fragment"><li>Events have a single issuer/producer that belongs to a particular domain</li></span>
+            </ul>
+        </section>
+
+        <section><h3>ES - The Good</h3>
+            <ul>
+                <span class="fragment"><li>Simplicity</li></span>
+                <aside class="notes">event objects are quite simple to model and work with</aside>
+                <span class="fragment"><li>Flexibility</li></span>
+                <aside class="notes">projections can be changed without complicated db migrations</aside>
+                <span class="fragment"><li>Performance</li></span>
+                <aside class="notes">events are immutable thus can be easily cached and services scaled</aside>
+                <span class="fragment"><li>Audit Trail</li></span>
+                <aside class="notes">complete audit trail is available for whatever reason</aside>
+            </ul>
+        </section>
+
+        <section><h3>ES - The Bad</h3>
+            <ul>
+                <span class="fragment"><li>Not trivial to query</li></span>
+                <aside class="notes">one cannot query immediately, more components needed</aside>
+                <span class="fragment"><li>Design of domain events required</li></span>
+                <aside class="notes"></aside>
+                <span class="fragment"><li>More storage space needed</li></span>
+                <aside class="notes"></aside>
+                <span class="fragment"><li>increased complexity when doing cross domain operations</li></span>
+                <aside class="notes"></aside>
+                <span class="fragment"><li>loading large event logs</li></span>
+                <aside class="notes">What if there are 1B events to replay</aside>
+            </ul>
+        </section>
+
+        <section><h3>ES - The Cool</h3>
+            <ul>
+                <span class="fragment"><li>Intent Trail</li></span>
+                <span class="fragment"><li>Extra Business Value, BI, machine learning, temporal queries</li></span>
+                <aside class="notes">Machine learning and temporal queries</aside>
+                <span class="fragment"><li>Time Travel (undo)</li></span>
+                <span class="fragment"><li>Debugging</li></span>
+                <aside class="notes">One can debug the exact same production behaviour on a Dev environment by simply
+                    reply the production log
+                </aside>
+                <span class="fragment"><li>Testing</li></span>
+                <aside class="notes">what best way to test than that to replay all the events that has happened to your
+                    system
+                </aside>
+                <span class="fragment"><li>Helps capturing more complete business domain</li></span>
+                <aside class="notes">by requiring the design of event objects</aside>
+            </ul>
+        </section>
+
+        <section><h2>CQRS</h2>
+            <section>
+                Command Query Responsibility <strong>Segregation</strong>
+            </section>
+            <section>
+                Before<br>
+                <img src="img/CQRS0.png">
+            </section>
+            <section>
+                After<br>
+                <img src="img/CQRS.png">
+            </section>
+        </section>
+        <section><h2>Wait a minute I know that from DDD?</h2></section>
+
+        <section><h2>Domain Driven Design</h2>
+            <section>
+                <span></span>
+                <div class="fragment">
+            <blockquote>Domain-driven design (DDD) is an approach to developing software for complex needs by deeply connecting the implementation to an evolving model of the core business concepts.</blockquote>
+                <small><em>http://dddcommunity.org/learning-ddd/what_is_ddd/</em></small>
+                </div>
+            </section>
+            <section>
+                Some more DDD terminology:<br>
+                <ul>
+                    <span class="fragment"><li>Aggregate - autonomous cluster of associated objects</li></span>
+                    <span class="fragment"><li>Aggregate Root - the entry point to access the aggregate</li></span>
+                    <span class="fragment"><li>Value Object - immutable, identity-free data</li></span>
+                    <span class="fragment"><li>Entity - An object defined by its identity</li></span>
+                    <span class="fragment"><li>Bounded Context - isolated part of a larger system with its own Domain Model</li></span>
+                    <span class="fragment"><li>SAGA - coordinates long running process (process manager)</li></span>
+                </ul>
+            </section>
+        </section>
+
+        <section><h2>ES Considerations</h2>
+            <section><p>How to delete and edit events?</p>
+                <ul>
+                    <span class="fragment"><li>retroactove events - reject or correct previous events</li></span>
+                    <span class="fragment"><li>Rewrite Event Log</li></span>
+                </ul>
+            </section>
+            <section><p>What if there are 1 billion events to replay?</p>
+                <ul>
+                    <span class="fragment"><li>Snapshots</li></span>
+                    <span class="fragment"><li>Rewrite event log</li></span>
+                    <span class="fragment"><li>Better design aggregates</li></span>
+                </ul>
+            </section>
+            <section><p>Event types and versioning?</p>
+                <ul>
+                    <span class="fragment"><li>Rewrite Event Log</li></span>
+                    <span class="fragment"><li>design and document good event taxonomy</li></span>
+                    <span class="fragment"><li>ex: <em>"https://myapp.io/tax/incrementQty"</em></li></span>
+                </ul>
+            </section>
+            <section></section>
+        </section>
+
+        <section><h2>CQRS & Command handling</h2>
+            <section>
+                <ul>
+                    <span class="fragment"><li>Commands can be rejected or accepted</li></span>
+                    <span class="fragment"><li>Command validation</li></span>
+                    <span class="fragment"><li>Domain validation</li></span>
+                    <span class="fragment"><li>Validation across multiple domains/aggregates</li></span>
+                    <ul>
+                        <span class="fragment"><li>Use Query module</li></span>
+                        <span class="fragment"><li>Use Process Managers</li></span>
+                    </ul>
+                    <span class="fragment"><li>distribute validation workload across shards</li></span>
+                </ul>
+            </section>
+        </section>
+
+        <section>When to use CQRS and ES?
+            <section>
+                <ul>
+                    <span class="fragment"><li>Complex Domains</li></span>
+                    <span class="fragment"><li>Distributed Systems</li></span>
+                    <span class="fragment"><li>Task Based Applications</li></span>
+                </ul>
+            </section>
+        </section>
+
+        <section>Refactoring my Android App?
+            <section></section>
+            <section>
+                <a target="_blank" href="https://github.com/googlesamples/android-architecture/tree/todo-mvp-rxjava">
+                    todo-mvp-rxjava
+                </a><br>
+                <img src="img/mvp.png">
+            </section>
+            <section>
+                Peek Inside Repository
+                <pre><code class="hljs" style="word-wrap: break-word;">
+     override fun completeTask(task: Task) {
+        checkNotNull(task)
+        mTasksRemoteDataSource.completeTask(task)
+        mTasksLocalDataSource.completeTask(task)
+
+        val completedTask = Task(task.title, task.description, task.id, true)
+
+        // Do in memory cache update to keep the app UI up to date
+        if (mCachedTasks == null) {
+            mCachedTasks = LinkedHashMap()
+        }
+        mCachedTasks!!.put(task.id, completedTask)
+    }
+            </code></pre>
+            </section>
+
+            <section>
+                Peek Inside Repository
+                <pre><code class="hljs" style="word-wrap: break-word;">
+    override fun getTasks(): Flowable&ltList&ltTask&gt&gt {
+        // Respond immediately with cache if available and not dirty
+        if (mCachedTasks != null && !mCacheIsDirty) {
+            return Flowable.fromIterable(mCachedTasks!!.values).toList().toFlowable()
+        } else if (mCachedTasks == null) {
+            mCachedTasks = LinkedHashMap()
+        }
+
+        val remoteTasks = andSaveRemoteTasks
+
+        if (mCacheIsDirty) {
+            return remoteTasks
+        } else {
+            // Query the local storage if available. If not, query the network.
+            val localTasks = andCacheLocalTasks
+            return Flowable.concat(localTasks, remoteTasks)
+                    .filter { tasks -> !tasks.isEmpty() }
+                    .firstOrError()
+                    .toFlowable()
+        }
+    }
+            </code></pre>
+            </section>
+            <section>To Be ... "simpler"<br>
+                <img src="img/mvpCQRS.png">
+            </section>
+        </section>
+
+        <section>
+            Command:
+            <pre><code class="hljs" style="word-wrap: break-word;">
+data class Command(
+        val subjectID: String?,
+        val userID: String?,
+        val datetime: Long,
+        val cmdID: String,
+        val cmdData: Any?
+)
+            </code>           </pre>
+        </section>
+
+        <section>
+            Event:
+            <pre><code class="hljs" style="word-wrap: break-word;">
+data class Event(
+        val subjectID: String?,
+        val userID: String?,
+        val datetime: Long,
+        val eventHash: String,
+        val eventID: String,
+        val eventData: Any?
+)
+            </code>           </pre>
+        </section>
+
+        <section>Identify Commands & Events
+            <section>
+            <pre><code class="hljs" style="word-wrap: break-word;">
+            class TaskDetailPresenter(...
+             ...
+                fun deleteTask()
+                //deleteTask / taskDeleted
+                fun activateTask()
+                //activateTask / taskActivated
+                fun completeTask()
+                //completeTask / taskCompleted
+            </code>
+            </pre>
+            </section>
+            <section>
+            <pre><code class="hljs" style="word-wrap: break-word;">
+            class AddEditTaskPresenter
+             ...
+                fun saveTask(title: String, description: String)
+                //updateTitle / titleUpdated
+                //updateContent / contentUpdated
+            </code>
+            </pre>
+            </section>
+
+            <section>
+                <pre><code class="hljs" style="word-wrap: break-word;">
+              class TasksPresenter(...
+              ...
+                    fun addNewTask()
+                    //createTask / taskCreated
+            </code>
+            </pre>
+            </section>
+            <section>
+                <pre><code class="hljs" style="word-wrap: break-word;">
+class TasksAR {
+    fun createTask() {}
+    fun updateTitle(taskID:Int, title: String) {}
+    fun updateContent(taskID:Int, content: String) {}
+    fun activateTask(taskID:Int) {}
+    fun completeTask(taskID:Int) {}
+    fun deleteTask(taskID:Int) {}
+}
+            </code>
+            </pre>
+            </section>
+            <section>
+                mTasksRepository.XXX --> mTasksAR.XXX
+            </section>
+        </section>
+        <section>Persist events locally
+            <section>
+                <pre><code class="hljs" style="word-wrap: break-word;">
+@Entity(tableName = "events")
+data class Event(
+        @ColumnInfo(name = "subjectID")
+        var subjectID: String?,
+        @ColumnInfo(name = "userID")
+        var userID: String?,
+        @ColumnInfo(name = "datetime")
+        var datetime: Long,
+        @ColumnInfo(name = "eventHash")
+        var eventHash: String,
+        @ColumnInfo(name = "eventID")
+        var eventID: String,
+        @ColumnInfo(name = "eventData")
+        var eventData: Any?
+)
+                </code></pre>
+            </section>
+            <section>
+                <pre><code class="hljs" style="word-wrap: break-word;">
+@Dao interface EventsPublisher {
+    @Insert
+    fun publishEvent(task: Event)
+
+}
+                </code></pre>
+            </section>
+            <section>
+                <pre><code class="hljs" style="word-wrap: break-word;">
+class TasksAR
+@Inject constructor(val eventsPublisher:EventsPublisher) {
+    fun createTask() {
+        eventsPublisher.publishEvent(Event("createTask"))
+    }
+    fun updateTitle(taskID:Int, title:String) {
+        doValidate("updateTitle", taskID, title)
+        eventsPublisher.publishEvent(Event("updateTitle", taskID, title))
+    }
+    fun updateContent(taskID:Int, content:String) {
+        doValidate("createTask", taskID, content)
+        eventsPublisher.publishEvent(Event("createTask", taskID, content))
+    }
+    fun activateTask(taskID:Int) {
+        doValidate("createTask", taskID)
+        eventsPublisher.publishEvent(Event("createTask", taskID))
+    }
+    fun comcompleteTask(taskID:Int) {
+        doValidate("createTask", taskID)
+        eventsPublisher.publishEvent(Event("createTask", taskID))
+    }
+    fun deleteTask(taskID:Int) {
+        doValidate("createTask", taskID)
+        eventsPublisher.publishEvent(Event("createTask", taskID))
+    }
+}
+                </code></pre>
+            </section>
+        </section>
+
+        <section>Firebase as remote event store
+            <section>
+                <ul>
+                    <span class="fragment"><li>Easy and Serverless</li></span>
+                    <span class="fragment"><li>Reactive - can subscribe to events</li></span>
+                    <span class="fragment"><li>Can easily hook up to Cloud Functions</li></span>
+                </ul>
+            </section>
+            <section>
+                <img src="img/mvpCQRS2.png">
+            </section>
+            <section>
+                <img src="img/mvpCQRS3.png">
+            </section>
+            <section>
+                Side effect: things like this will not be needed in your app
+                <pre><code class="hljs" style="word-wrap: break-word;">
+  viewHolder.bindToPost(model, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View starView) {
+                        // Need to write to both places the post is stored
+                        DatabaseReference globalPostRef = mDatabase.child("posts").child(postRef.getKey());
+                        DatabaseReference userPostRef = mDatabase.child("user-posts").child(model.uid).child(postRef.getKey());
+                        // Run two transactions
+                        onStarClicked(globalPostRef);
+                        onStarClicked(userPostRef);
+                    }
+                });
+            </code>
+            </pre>
+            </section>
+            <section>
+                <em>We need to modify publisher listener to post to firebase<br>
+                    and we need to listen for incoming events</em>
+                <pre><code class="hljs" style="word-wrap: break-word;">
+FirebaseDatabase.getInstance().getReference().child("events")
+    .addChildEventListener(new ChildEventListener()
+    {
+        fun onChildAdded(dataSnapshot: DataSnapshot, s: String) {
+            postCommand(Command(dataSnapshot))
+        }
+    }
+                </code></pre>
+            </section>
+        <section>
+            Use Cloud Functions
+            <pre><code>
+  functions.database.ref('/events/{eventID}')
+    .onWrite(event => {
+      const newVal = process(event.data);
+      makeHttpCall(newVal);
+      return readModel.ref.child(event.params.subjectId).set(newVal);
+    });
+            </code></pre>
+
+        </section>
+
+            <section>
+            <pre><code class="hljs" style="word-wrap: break-word;">
+           // TODO: Many more options and scenarios to consider.
+        </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <h3>Takeaways</h3>
+            <ul>
+                <span class="fragment"><li>Be pragmatic but keep your eyes open</li></span>
+                <span class="fragment"><li>Model your domain not your data storage</li></span>
+                <span class="fragment"><li>Think functional when things are functional</li></span>
+                <span class="fragment"><li>Actor Model is cool</li></span>
+                <span class="fragment"><li>Divide only when needed, but always consider it</li></span>
+                <span class="fragment"><li>Process managers are great when they can fit in your head</li></span>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Happy Event Sourcing!</h3>
+            <h1>Thank You!</h1>
+        </section>
+
+    </div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            { src: 'plugin/zoom-js/zoom.js', async: true },
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            }
+//            ,
+//            { src: 'https://d3js.org/d3.v4.min.js' },
+//            { src: 'plugin/d3js-dia/d3js.js' }
+
+        ]
+    });
+</script>
+</body>
+</html>
