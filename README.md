@@ -1,6 +1,7 @@
 # prezz
 Prez
 
+*   [Code Europe 2017 Microservices Epiphany](https://djodjoni.github.io/prezz/2017-12-13-CodeEurope-Microservices-Epiphany)
 *   [GDG DevFest NL](https://djodjoni.github.io/prezz/2017-11-18-devfest-nl-Event-Sourcing-CQRS-with-Android)
 *   [GDG DevFest BE](https://djodjoni.github.io/prezz/2017-11-04-devfest-be-Event-Sourcing-CQRS-with-Android)
 *   [jPrime 2017 Reactive Mesh](https://djodjoni.github.io/prezz/2017-05-31-jprime-reactive-mesh/#)
