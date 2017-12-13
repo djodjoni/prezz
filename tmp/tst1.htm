@@ -1,0 +1,296 @@
+
+<!doctype html>
+
+<html lang="de">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=1024" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<title>IT-Management von Morgen mit OpenStack, Docker &amp; Co - Dr. Alexander Kläser - Univention GmbH</title>
+
+	<meta name="author" content="Alexander Kläser" />
+
+	<link href="./css/style.css" rel="stylesheet" />
+
+</head>
+
+<body class="impress-not-supported">
+
+<div class="fallback-message">
+	<p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+	<p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+
+<div id="disclaimer">
+	<div class="left">IT-Management von Morgen<br/>mit OpenStack, Docker &amp; Co</div>
+	<div class="right">Dr. Alexander Kläser<br/><img src="./prez1_files/logo-univention.svg" class="logo" width="130px" /></div>
+</div>
+
+
+<div id="impress">
+
+
+	<img src="./prez1_files/sun.svg" class="sprite" width="400" data-x="-580" data-y="-270" data-z="-1500">
+	<img src="./prez1_files/cloud.svg" class="sprite" width="550" data-x="-330" data-y="-80" data-z="-1200">
+	<img src="./prez1_files/mountain.svg" class="sprite" width="2400" data-x="0" data-y="900" data-z="-700" data-scale="0.5">
+	<img src="./prez1_files/landscape3.svg" class="sprite" width="5500" data-x="-300" data-y="1450" data-z="-650">
+	<img src="./prez1_files/landscape2.svg" class="sprite" width="5000" data-x="200" data-y="1500" data-z="-300">
+	<img src="./prez1_files/landscape1.svg" class="sprite" width="5000" data-x="0" data-y="1800" data-z="-100">
+	<img src="./prez1_files/containers.svg" class="sprite" width="500" data-x="150" data-y="1250" data-z="0">
+	<img src="./prez1_files/signs.svg" id="signs" class="sprite" width="950" data-x="470" data-y="980" data-z="500" data-scale="0.4">
+	<img src="./prez1_files/flag.svg" class="sprite" width="500" data-x="-10" data-y="390" data-z="-700" data-scale="0.2">
+	<img src="./prez1_files/house.svg" id="house" class="sprite" width="1100" data-x="130" data-y="580" data-z="-700" data-scale="0.1">
+	<img src="./prez1_files/penguin.svg" id="penguin" class="sprite" width="500" data-x="170" data-y="590" data-z="-700" data-scale="0.1">
+
+	<div id="titel" class="step" data-x="0" data-y="-200" data-z="-1200">
+		<h1>IT-Ma<span class="logo-n"></span>agement von Morgen<br/>mit OpenStack, <b>Docker</b> &amp; Co</h1>
+		<h2>"Werkstattbericht"</h2>
+		<h3>Dr. Alexander Kläser<br/>klaeser@univention.de<br/>Open Source Software Engineer</h3>
+		<img src="./prez1_files/logo-univention.svg" class="logo" />
+	</div>
+
+
+	<div id="agenda-1" class="step" data-x="0" data-y="800" data-scale="1.5"></div>
+	<div id="agenda-1-zoom" class="step" data-x="430" data-y="630" data-scale="0.75"></div>
+
+
+	<div id="wir" class="step" data-x="335" data-y="560" data-z="-600" data-scale="0.2">
+		<h3>Wer sind wir?</h3>
+		<ul>
+			<li>Führender Anbieter von Open Source-Produkten für Betrieb &amp; Management von IT-Infrastruktur</li>
+			<li>Gegründet 2002 in Bremen, Büros in Berlin &amp; Seattle, WA (USA)</li>
+			<li>~50 Mitarbeiter</li>
+			<li>Eigenfinanziert, profitabel und stetig wachsend</li>
+			<li>Mehr als 1.300 Kunden</li>
+			<li>Mehr als 250 Kooperationspartner (Systemintegratoren, Cloud Service Provider, Technologiepartner)</li>
+		</ul>
+	</div>
+	<div id="ich" class="step" data-x="335" data-y="560" data-z="-600" data-scale="0.15">
+		<h3>Wer bin ich?</h3>
+		<ul>
+			<li>Alexander Kläser (1980)</li>
+			<li>Informatikstudium (Hochschule Bonn-Rhein-Sieg)</li>
+			<li>Promotion im Bereich Bildverarbeitung &amp;<br/>künstliche Intelligenz (Universität Grenoble, FR)</li>
+			<li>Seit 2010 in Produktentwicklung @Univention</li>
+			<li>Haupttätigkeiten: Management-Oberfläche (Web), Usability, Ausbilder ...</li>
+		</ul>
+	</div>
+	<div id="machen" class="step" data-x="-15" data-y="550" data-z="-600" data-scale="0.1">
+		<h3>Was machen wir?</h3>
+		<ul>
+			<li>Hauptprodukt: <span class="logo-ucs" /></li>
+			<li>Plattform für IT-Management</li>
+			<li>Offene Alternative zu Microsoft Serversystemen</li>
+			<li>Basierend auf Debian Linux</li>
+			<li>100% Open Source Software</li>
+		</ul>
+	</div>
+	<div id="ziel" class="step" data-x="-40" data-y="480" data-z="-600" data-scale="0.5">
+		<h3>Was ist unser Ziel?</h3>
+		<p>Einfache Kombinierbarkeit von IT-Technologien.</p>
+		<p>... d.h. unterschiedlichste Server-Dienste<br/>überall miteinander kombinieren können</p>
+	</div>
+	<div id="ziel-2" class="step" data-x="-300" data-y="400" data-z="-600" data-scale="0.25">
+		<h3>Wie erreichen wir dieses Ziel?</h3>
+		<ul>
+			<li>Entwicklung einer (kosten-)freie Plattform (UCS)</li>
+			<li>Offenheit &amp; Wahlfreiheit &amp; Einfachheit</li>
+			<li>Zusammenarbeit mit Partnern</li>
+		</ul>
+	</div>
+	<img src="./prez1_files/logo-oca.svg" id="logo-oca" class="sprite" width="400" data-x="-220" data-y="520" data-z="-600" data-scale="0.2">
+	<div id="oca" class="step" data-x="-220" data-y="500" data-z="-600" data-scale="0.2">
+		<h3>Partner?</h3>
+		<p>Independent Software Vendors</p>
+		<p>Cloud Service Providers</p>
+		<p>System-Integratoren</p>
+		<p>Hardware-Hersteller</p>
+	</div>
+
+
+	<div id="agenda-2" class="step" data-x="0" data-y="800" data-scale="1.5"></div>
+	<div id="agenda-2-zoom" class="step" data-x="430" data-y="780" data-scale="0.75"></div>
+
+
+	<img src="./prez1_files/cloud.svg" class="sprite" width="800" data-x="-450" data-y="650" data-z="-600" data-scale="0.5">
+	<div id="ucs-1" class="step" data-scale="0.25" data-x="-430" data-y="670" data-z="-600">
+		<h3>Kombination heterogener Client-Systeme</h3>
+		<ul>
+			<li>Integration von OpenLDAP &amp; Active Directory (via Samba)</li>
+			<li>Einbindung von Windows, Macintosh, Linux Clients</li>
+			<li>Single Point of Administration</li>
+			<li>Assistent zur Übernahme von Microsoft-Domänen</li>
+			<li>... oder: Betrieb als Mitglied in Microsoft-Domänen</li>
+		</ul>
+	</div>
+	<img src="./prez1_files/cloud.svg" class="sprite" width="500" data-x="-600" data-y="850" data-z="-500" data-scale="0.5">
+	<img src="./prez1_files/umc-desktop.png" class="sprite umc" width="250" data-x="-640" data-y="930" data-z="-500" data-scale="0.5">
+	<img src="./prez1_files/umc-tablet.png" class="sprite umc" width="200" data-x="-560" data-y="950" data-z="-500" data-scale="0.5">
+	<img src="./prez1_files/umc-mobile.png" class="sprite umc" width="65" data-x="-500" data-y="930" data-z="-500" data-scale="0.5">
+	<div id="ucs-2" class="step" data-scale="0.25" data-x="-595" data-y="880" data-z="-500">
+		<h3>Provisionierung von<br/>Systemen in der Cloud</h3>
+		<p>Einrichtung &amp; Administration komplett Web-basiert</p>
+	</div>
+	<img src="./prez1_files/cloud.svg" class="sprite" width="560" data-x="-250" data-y="800" data-z="-400" data-scale="0.5">
+	<div id="ucs-3" class="step" data-scale="0.25" data-x="-225" data-y="815" data-z="-400">
+		<h3>Kombination mit Cloud-Diensten</h3>
+		<ul>
+			<li>Integration eines Identity-Providers (SAML)</li>
+			<li>Zentrale Benutzerpflege in UCS</li>
+		</ul>
+	</div>
+	<img src="./prez1_files/cloud.svg" class="sprite" width="700" data-x="400" data-y="700" data-z="-600" data-scale="0.5">
+	<img src="./prez1_files/logo-open-stack.svg" id="logo-open-stack" class="sprite" width="200" data-x="280" data-y="725" data-z="-600" data-scale="0.2">
+	<img src="./prez1_files/screenshot-uvmm.png" id="screenshot-uvmm" class="sprite" width="230" data-x="545" data-y="730" data-z="-600" data-scale="0.5">
+	<div id="ucs-4" class="step" data-scale="0.22" data-x="400" data-y="725" data-z="-600">
+		<h3>Kombination von Public/Private Clouds</h3>
+		<ul>
+			<li>Größtes Wachstum für hybride Cloud-Szenarien!</li>
+			<li>OpenStack sehen wir als <b>die</b> Zukunftstechnologie!</li>
+			<li>Ermöglicht Zusammenspiel von Private &amp; Public Cloud</li>
+			<li>VM-Verwaltung über UCS-Web-Oberfläche</li>
+			<li>Unterstützung von OpenStack, AWS &amp; KVM</li>
+			<li>(@Univention löst OpenStack-Cluster langfristig KVM ab)</li>
+		</ul>
+	</div>
+	<img src="./prez1_files/cloud2.svg" class="sprite" width="1000" data-x="0" data-y="650" data-z="-500" data-scale="0.5">
+	<img src="./prez1_files/screenshot-appcenter.png" id="screenshot-appcenter" class="sprite" width="300" data-x="180" data-y="660" data-z="-500" data-scale="0.5">
+	<div id="ucs-5" class="step" data-scale="0.3" data-x="5" data-y="665" data-z="-500">
+		<h3>Kombination von Diensten in der (hybriden) Cloud</h3>
+		<ul>
+			<li>Integration und Verwaltung via <i>App Center</i> auf Web-Oberfläche</li>
+			<li>Einfache Installation (=1-Klick<sup>*</sup>)</li>
+			<li>Unmittelbare Integration in IT-Infrastruktur via UCS</li>
+			<li>Ideale Plattform für ISVs &amp; CSPs</li>
+			<li>Ein Ecosystem verschiedener Lösungen und Anbieter</li>
+		</ul>
+	</div>
+
+
+	<img src="./prez1_files/rain.svg" class="sprite rain" width="2050" data-x="-10" data-y="830" data-z="-540" data-scale="0.2">
+	<img src="./prez1_files/rain.svg" class="sprite rain" width="2150" data-x="10" data-y="860" data-z="-530" data-scale="0.2">
+	<div id="rain" class="step" data-scale="0.35" data-x="30" data-y="860" data-z="-510">
+		<h3>Aktuelle Herausforderungen</h3>
+		<ul>
+			<li>Stetig steigende Anzahl von UCS-Systemen<br/>(&gt; 3.000 Organisationen setzen UCS ein)</li>
+			<li>Stetig steigende Anzahl neuer Apps (aktuell ca. 70)</li>
+			<li>Eine App hat Vollzugriff auf UCS-System</li>
+			<li>Widersprüchliche Software-Abhängigkeiten möglich</li>
+			<li>Mehr Apps &rarr; steigende Update-Komplexität</li>
+			<li>Paketierung via Debian-Pakete Voraussetzung</li>
+			<li><b>Lösung:</b> Containerization (via Docker)</li>
+			<ul>
+	</div>
+
+
+	<div id="agenda-3" class="step" data-x="0" data-y="800" data-scale="1.5"></div>
+	<div id="agenda-3-zoom" class="step" data-x="430" data-y="980" data-scale="0.75"></div>
+
+
+	<div id="docker-1" class="step" data-scale="0.6" data-x="-100" data-y="1320" data-z="50">
+		<h3>Analogie zum Transportwesen</h3>
+		<ul>
+			<li>Standardisierte Container</li>
+			<li>Dadurch Entkopplung von Transport &amp; Inhalt</li>
+		</ul>
+	</div>
+	<div id="docker-2" class="step" data-scale="0.3" data-x="-600" data-y="1280" data-z="-150">
+		<h3>Software-Container</h3>
+		<ul>
+			<li>Standardisierung der Software-Umgebung</li>
+			<li>Linux-Kernel erlaubt sauberes Sandboxing:<br/>Control Groups + Namespaces = Containers</li>
+			<li>Sehr geringer Overhead</li>
+			<li>Softwarehersteller zuständig für Innenleben</li>
+			<li>Infrastruktur-Betreiber zuständig für Handhabung</li>
+			<li>Zusicherung bzgl. korrekter Ausführung möglich</li>
+		</ul>
+	</div>
+	<div id="cgroups" class="step" data-scale="0.2" data-x="-690" data-y="1280" data-z="-550">
+		<h3>Control Groups (cgroups)</h3>
+		<ul>
+			<li>Kontrolle über Nutzung von Speicher, CPU, Netzwerk, Disk I/O</li>
+			<li>Control Gruppe = Gruppe von Prozessen mit gleichen Kriterien</li>
+		</ul>
+	</div>
+	<div id="namespaces" class="step" data-scale="0.2" data-x="-690" data-y="1280" data-z="-550">
+		<h3>Namespaces</h3>
+		<ul>
+			<li>Isolierung der Prozessgruppen voneinander</li>
+			<li>Kein Zugriff auf Ressourcen aus anderen Gruppen</li>
+			<li>Unterschiedliche Namespaces: PID, Netzwerk, Mount, User, ...</li>
+		</ul>
+	</div>
+	<div id="docker-3" class="step" data-scale="0.5" data-x="1050" data-y="1220" data-z="-150">
+		<h3>VM &amp; Container</h3>
+		<img src="./prez1_files/container_principle.svg" width="1000" />
+	</div>
+	<img src="./prez1_files/logo-docker.png" id="logo-docker" class="sprite" width="750" data-x="720" data-y="1390" data-z="0" data-scale="0.2">
+	<div id="docker-4" class="step" data-scale="0.4" data-x="530" data-y="1320" data-z="0">
+		<h3>Docker</h3>
+		<ul>
+			<li>Liefert Werkzeuge für effizienten Einsatz der Linux-Kernel-Container-Technologie (sind schon älter)</li>
+			<li>Abstraktion vieler Details<br/>(Netzwerk, Namespaces, Cgroups, Mounting etc.)</li>
+			<li>Docker-Container startet ein einziges Kommando</li>
+			<li>Container ist nicht gebootet (manuelles Starten von <i>/sbin/init</i>)</li>
+			<li>Software-Abhängigkeiten liegen in eigenen RO-Images</li>
+			<li>Container teilen Images</li>
+			<li>Nur der oberste Layer ist schreibbar (Copy-On-Write)</li>
+		</ul>
+	</div>
+	<div id="docker-5" class="step" data-scale="0.4" data-x="530" data-y="1550" data-z="50">
+		<h3>Container Life Cycle</h3>
+		<img src="./prez1_files/docker_life_cycle.svg" width="900" />
+	</div>
+	<div id="docker-herausforderungen" class="step" data-scale="0.4" data-x="200" data-y="1500" data-z="100">
+		<h3>Herausforderungen für Einsatz in UCS</h3>
+		<ul>
+			<li>Persistenz von App-Daten?</li>
+			<li>Updates? Dispose'n'Replace oder In-Container-Update?</li>
+			<li>App-Integration in UCS (bspw. Port-Mapping)?</li>
+			<li>Integration von eng verzahnten Apps?</li>
+			<li>Sichere Abschottung von Apps?</li>
+		</ul>
+	</div>
+	<div id="docker-idee" class="step" data-scale="0.4" data-x="-80" data-y="1550" data-z="50">
+		<h3>Lösungsansatz *WIP*</h3>
+		<ul>
+			<li>Univention Runtime Environment (URE)<br/>als minimales UCS-System (ca. 400 MB groß)</li>
+			<li>App Software &amp; URE sind je Docker-Images</li>
+			<li>Installation über das App Center</li>
+			<li>URE-Image wird geteilt von Apps</li>
+			<li>(Alternativ: App benutzt anderes Runtime Environment)</li>
+			<li>App joint als eigenständiges System<br/>in eine UCS- oder Microsoft-Domäne</li>
+			<li><b>Status:</b> Entwicklung für UCS 4.1<br/>&rarr; <a href="http://wiki.univention.de/Docker" target="_blank">wiki.univention.de/Docker</a></li>
+		</ul>
+	</div>
+	<div id="dfki" class="step" data-scale="0.3" data-x="-360" data-y="1420" data-z="0">
+		<h3>Forschungsprojekt</h3>
+		<ul>
+			<li>Zusammenarbeit mit dem Deutschen Forschungszentrum für Künstliche Intelligenz (DFKI)</li>
+			<li>Auch theoretische Betrachtungen<br/>(Zugriffs-/Informationsflusskontrolle)</li>
+			<li>Integration von SELinux</li>
+			<li>Verständliche Beschreibung der Sicherheitsrichtlinien für Benutzer</li>
+		</ul>
+	</div>
+
+
+	<div id="overview" class="step" data-x="0" data-y="800" data-scale="1.5"></div>
+
+</div>
+
+<div class="hint">
+	<p>Use a spacebar or arrow keys to navigate</p>
+</div>
+<script>
+    if ("ontouchstart" in document.documentElement) {
+        document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+    }
+</script>
+
+<script src="./prez1_files/impress.js"></script>
+<script>impress().init();</script>
+
+</body>
+</html>
+

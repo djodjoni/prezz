@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Microservices Epiphany</title>
+    <meta name="author" content="Kalin Maldzhanski" />
+    <meta name="description" content="Presentation about a roadmap towards Microservices and Distributed Systems" />
+    <link href="css/presentation.css" rel="stylesheet" />
+
+
+    <script src="./js/jquery.1.7.1.min.js"></script>
+    <script src="./js/img-svg.js"></script>
+</head>
+<body class="impress-not-supported">
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+
+
+<div id="impress" data-transition-duration="1000">
+
+    <div id="overview1" class="step" data-x="3000" data-y="2000" data-scale="9" style="pointer-events: none;">
+    </div>
+
+    <div id="start" class="step" data-scale="1" data-x="-2000" data-y="-500">
+        <h1>Microservices Epiphany</h1>
+        <p>Kalin Maldzhanski<br/>
+            @djodjoni</br>
+        </p>
+    </div>
+
+
+    <div id="simple" class="step" data-scale="1" data-x="-2000" data-y="4000">
+        <h1>In the Beginning</h1>
+        <p>Quiet place, one system one DB<br>
+        <img src="img/summer-worker.jpg"/>
+        </p>
+    </div>
+
+    <div id="complex" class="step" data-scale="1" data-x="-1000" data-y="4000">
+        <h1>But that is booring. Lets Go Microservices!!!</h1>
+        <p>Many Services, many DBs
+        <br>
+            <img src="img/super-power.jpeg"/>
+        </p>
+    </div>
+
+    <div id="cannothandle" class="step" data-scale="1" data-x="0" data-y="4000">
+        <h1>Cannot handle That!!</h1>
+        <p>That too many uncontrollable Services and DBs!
+        <br>
+            <img src="img/frustrated-dev.jpeg"/>
+        </p>
+    </div>
+
+    <div id="why" class="step" data-scale="1" data-x="-1000" data-y="3500">
+        <h1>But why ...</h1>
+        <p>So many Services and DBs ?!
+        <img src="img/why.jpg">
+        </p>
+    </div>
+
+
+    <div id="reasons" class="step" data-scale="1" data-x="0" data-y="3500">
+        <h1>Reasons:</h1>
+        <ul>
+            <li>It's Cool, it will fix it All</li>
+            <li>easier to debug, modify and add features</li>
+
+            <li>limit the problem scope and concentrate on business capabilities</li>
+            <li>use different technologies, laguanges and DBs</li>
+            <li>deploy services independently</li>
+            <li>scale independently</li>
+            <li>improve service availability</li>
+        </ul>
+    </div>
+
+    <div id="reasons1" class="step" data-scale="0.1" data-x="-300" data-y="3300">
+        <h1>It's Cool, it will fix it All</h1>
+        </br> </br>
+        <p>A developer illness - overengineering </p>
+    </div>
+
+
+    <div id="reasons2" class="step" data-scale="0.1" data-x="-300" data-y="3345">
+        <h1>easier to debug, modify and add features</h1>
+        </br> </br>
+        <p>How mServices are really helping that and is it really easier?</p>
+    </div>
+
+    <div id="reasons3" class="step" data-scale="0.1" data-x="-300" data-y="3390">
+        <h1>limit the problem scope and concentrate on business capabilities</h1>
+        </br> </br>
+        <p>How come this is something new?</p>
+    </div>
+
+    <div id="reasons4" class="step" data-scale="0.1" data-x="-300" data-y="3435">
+        <h1>use different technologies, laguanges and DBs</h1>
+        </br> </br>
+        <p>well it is a little easier but we've doing this before</p>
+    </div>
+
+    <div id="reasons5" class="step" data-scale="0.1" data-x="-300" data-y="3480">
+        <h1>deploy services independantly</h1>
+        </br> </br>
+        <p>yep, that's a handy one</p>
+    </div>
+
+    <div id="reasons6" class="step" data-scale="0.1" data-x="-300" data-y="3525">
+        <h1>scale independantly</h1>
+        </br> </br>
+        <p>yep, indeed</p>
+    </div>
+
+    <div id="reasons7" class="step" data-scale="0.1" data-x="-300" data-y="3570">
+        <h1>improve service availability</h1>
+        </br> </br>
+        <p>no single point of failure at lower cost</p>
+    </div>
+
+    <div id="reasons8" class="step" data-scale="0.1" data-x="-300" data-y="3620">
+        <h1>You need to deal with different already autonomous services</h1>
+        </br> </br>
+        <p>Enabling societies cooperate, making systems inter-operate</p>
+    </div>
+
+
+
+    <div id="what-is-mservice" class="step" data-scale="1" data-x="-500" data-y="-500">
+        <h1>What are microservices actually?</h1>
+        </br>
+        <div class="substep">
+        <blockquote> Service-Oriented Architecture (SOA) is a very broad term and practically meaningless. Microservices is a subset of SOA with the value being that it allows us to put a label on this useful subset of SOA terminology</blockquote>
+        </br>
+        <em>Martin Fowler</em>
+        </div>
+        </br></br>
+        <div class="substep">SOA done right? </div>
+    </div>
+
+    <div id="distributed-def" class="step" data-scale="1" data-x="-500" data-y="-500" data-z="-2000">
+        <h1>Distributed System?</h1>
+        </br>
+        <div class="substep">
+        <blockquote>A collection of independent
+            computers that appears to its
+            users as a single coherent
+            system.</blockquote>
+            </br>
+        <em>Tanenbaum & Van Steen</em>
+        </div>
+        <div class="substep">
+        </br></br>
+        <blockquote>A distributed system is one in which the failure of a computer you didn't even know existed can render your own computer unusable.
+        </blockquote>
+        </br>
+        <em>Leslie Lamport</em>
+        </div>
+    </div>
+
+
+    <div id="oop-alan-key" class="step" data-scale="1" data-x="-500" data-y="-500" data-z="-4000">
+        <h1>Remember OOP?</h1>
+        </br>
+        <blockquote>I thought of objects being like biological cells and/or individual
+
+            computers on a network, only able to communicate with messages </blockquote>
+        </br>
+        <em>Alan Key</em>
+
+    </div>
+
+    <div id="actor-model" class="step" data-scale="1" data-x="-500" data-y="-500" data-z="-6000">
+        <h1>Actor model?</h1>
+        <blockquote>Actors are autonomous and concurrent objects which execute asynchronously. The actors model provides flexible mechanisms for building parallel and distributed software systems.
+        </blockquote>
+        </br>
+        <em>"Laws for Communicating Parallel Processes", C. Hewitt et al, IFIP 77, pp. 987-992, N-H 1977 </em>
+    </div>
+
+    <div id="actors" class="step" data-scale="1" data-x="-500" data-y="-500" data-z="-8000">
+        <h1>Actors</h1>
+        <p>
+            <img src="img/actors.png">
+        </p>
+    </div>
+
+    <div id="howto" class="step" data-scale="1" data-x="1000" data-y="4000" data-z="0">
+        <h1>Q: So how do we switch to Microservices?</h1>
+        </br>
+        <p class="substep">A: Step by step - start simple, then split when you grow</p>
+        </br>
+        <ul>
+            <li class="substep">one process for all services</li>
+            <li class="substep">one process per service</li>
+            <li class="substep">container per service</li>
+            <li class="substep">node per service</li>
+        </ul>
+        <p class="substep">Yes, this is possible without a big refactoring! Just design it!</p>
+        <p class="substep">And remember, it all depends on the problem you're trying to solve.</p>
+
+    </div>
+
+    <div id="before-start-design" class="step" data-scale="1" data-x="2500" data-y="4000" data-z="0">
+        <h1>Before you start</h1>
+        <ul>
+            <li class="substep">Define your Domain</li>
+            <li class="substep">Define Sub-domains and component boundaries</li>
+            <li class="substep">Define messages/events and the interfaces</li>
+            <li class="substep">Choose technologies, protocols and languages</li>
+        </ul>
+    </div>
+
+    <div id="peak-into-ddd" class="step" data-scale="1" data-x="3500" data-y="4000" data-z="1000">
+        <p>
+        <img src="img/DomainDrivenDesign.jpeg">
+        </p>
+    </div>
+
+    <div id="peak-into-ddd2" class="step" data-scale="1" data-x="4500" data-y="4000" data-z="2000">
+        <h1>Some DDD concepts</h1>
+        </br>
+        <ul><li class="substep">Aggregate - autonomous cluster of associated entities</li>
+            <li class="substep">Aggregate Root - the entry point to access the aggregate</li>
+            <li class="substep">Value Object - immutable, identity-free data</li>
+            <li class="substep">Entity - An object defined by its identity</li>
+            <li class="substep">Bounded Context - isolated part of a larger system with its own Domain Model</li>
+            <li class="substep">SAGA - coordinates long running process (process manager)</li>
+        </ul>
+    </div>
+
+    <div id="subdomains" class="step" data-scale="1" data-x="5500" data-y="4000" data-z="3000">
+        <img src="img/subdomains.jpg">
+    </div>
+    <div id="aggregates" class="step" data-scale="1" data-x="5500" data-y="4000" data-z="0">
+        <img src="img/aggregates.jpg">
+    </div>
+
+    <div id="Interfaces1" class="step" data-scale="1" data-x="1000" data-y="3000" data-z="0">
+        <h1>Interfaces - Technology</h1>
+        <ul>
+            <li class="substep">REST/HTTP</li>
+            <li class="substep">WebSocket</li>
+            <li class="substep">SSE</li>
+            <li class="substep">RPC - gRPC/Thrift</li>
+            <li class="substep">EventBus</li>
+            <li class="substep">Query API - SPARQL, Gremlin, GraphQL</li>
+        </ul>
+    </div>
+
+    <div id="Interfaces2" class="step" data-scale="1" data-x="2000" data-y="3000" data-z="1000">
+        <h1>Interfaces - Schemas</h1>
+        <ul>
+            <li class="substep">protobuf</li>
+            <li class="substep">xml schema</li>
+            <li class="substep">json schema</li>
+            <li class="substep">some IDL</li>
+            <li class="substep">WSDL, WADL, SSDL, Swagger/OpenAPI</li>
+            <li class="substep">Hydra, HAL, Json Hyper-Schema</li>
+        </ul>
+    </div>
+
+    <div id="frameworks" class="step" data-scale="1" data-x="3000" data-y="3000" data-z="2000">
+        <h1>Frameworks</h1>
+        <ul>
+            <li class="substep">Node.js </li>
+            <li class="substep">Ruby on Rails </li>
+            <li class="substep">Symphony / Laravel / Drupal</li>
+            <li class="substep">Akka</li>
+            <li class="substep">Spring / Spring Boot</li>
+            <li class="substep">Vert.x</li>
+        </ul>
+    </div>
+
+
+    <div id="storage" class="step" data-scale="1" data-x="4000" data-y="3000" data-z="3000">
+        <h1>Data Storage</h1>
+        <ul>
+            <li class="substep">SQL - MySql / MariaDB / PostgreSQL</li>
+            <li class="substep">NoSQL - MongoDB / CouchDB / Cassandra</li>
+            <li class="substep">EventStore</li>
+            <li class="substep">all the managed cloud DBs</li>
+        </ul>
+    </div>
+
+    <div id="hosting" class="step" data-scale="1" data-x="5000" data-y="3000" data-z="4000">
+        <h1>Hosting</h1>
+        <ul>
+            <li class="substep">some datacenter</li>
+            <li class="substep">Azure</li>
+            <li class="substep">AWS</li>
+            <li class="substep">GCP</li>
+            <li class="substep">Bluemix</li>
+            <li class="substep">Heroku</li>
+            <li class="substep">Digital Ocean</li>
+        </ul>
+    </div>
+
+    <div id="deployment" class="step" data-scale="1" data-x="6000" data-y="3000" data-z="5000">
+        <h1>Deployment</h1>
+        <ul>
+            <li class="substep">Containers</li>
+            <li class="substep">No Containers</li>
+        </ul>
+    </div>
+
+    <div id="Containers" class="step" data-scale="1" data-x="7000" data-y="3000" data-z="6000">
+        <h1>Container Management</h1>
+        <ul>
+            <li class="substep">Kubernetes</li>
+            <li class="substep">Docker Swarm</li>
+            <li class="substep">OpenShift</li>
+            <li class="substep">Mesos, DC/OS</li>
+            <li class="substep">GKE</li>
+            <li class="substep">ECS</li>
+            <li class="substep">ACS</li>
+        </ul>
+    </div>
+
+    <div id="monitoring" class="step" data-scale="1" data-x="8000" data-y="3000" data-z="7000">
+        <h1>Monitoring and logging</h1>
+        <ul>
+            <li class="substep">Prometheus</li>
+            <li class="substep">ELK stack</li>
+            <li class="substep">anything else</li>
+        </ul>
+    </div>
+
+            <div id="finally" class="step" data-x="3000" data-y="-3500" data-z="0">
+        <h1>Finally</h1>
+<p>            <img src="img/entire-architecture.png">
+</p>
+            </div>
+
+    <div id="finally2" class="step" data-x="5000" data-y="-3500" data-z="3000">
+        <h1></h1>
+        <p>
+            <img src="img/swarm-diagram.png">
+        </p>
+    </div>
+
+    <div id="takeaways" class="step" data-x="7000" data-y="-3500" data-z="0">
+        <h1>Takeaways</h1>
+        <ul>
+            <li class="substep">Be pragmatic, but keep your eyes open</li>
+            <li class="substep">Justify what needs to go distributed</li>
+            <li class="substep">Before microservices try write modular monolith</li>
+            <li class="substep">Actor Model is very helpful</li>
+            <li class="substep">Try DDD and BDD</li>
+            <li class="substep">Event sourcing could be handy</li>
+            <li class="substep">Pay attention to events/messages design</li>
+            <li class="substep">Pay attention to interface design and contracts</li>
+            <li class="substep">Eventual consistency is not that bad</li>
+            <li class="substep">Design with fault tolerance</li>
+            <li class="substep">Before Deployment make sure you have monitoring in place</li>
+
+        </ul>
+    </div>
+
+    <div id="thankyou" class="step" data-x="8000" data-y="-3500" data-z="3000">
+        <h1>Thank you!</h1>
+    </div>
+
+    <div id="thankyou2" class="step" data-x="8000" data-y="-3500" data-z="4000">
+        <h1>Dziękuję Ci!</h1>
+    </div>
+
+    <div id="thankyou3" class="step" data-x="8000" data-y="-3500" data-z="5000">
+        <h1>Twoje zdrowie</h1>
+        <p>
+            <img src="img/thankyou.jpg">
+        </p>
+    </div>
+
+
+
+    <div id="overview" class="step" data-x="3000" data-y="2000" data-scale="9" style="pointer-events: none;">
+    </div>
+</div>
+
+<div id="impress-toolbar"></div>
+
+<div class="impress-progressbar"><div></div></div>
+<div class="impress-progress"></div>
+
+<div id="impress-help"></div>
+
+<script type="text/javascript" src="./js/impress.js"></script>
+<script>impress().init();</script>
+
+
+
+</body>
+</html>
+
+
+
